@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
 				R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
 			)
 		)
-		setupActionBarWithNavController(navController, appBarConfiguration)
-		navView.setupWithNavController(navController)
+		//타이틀바 없애면 오류 남.
+//		setupActionBarWithNavController(navController, appBarConfiguration)
+//		navView.setupWithNavController(navController)
 	}
 }
