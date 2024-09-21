@@ -65,5 +65,7 @@ dependencies {
 
 	implementation("com.kakao.maps.open:android:2.9.5")
 	implementation("com.kakao.sdk:v2-all:2.20.3")
+	implementation("com.google.android.gms:play-services-location:21.0.1")
+
 
 }
