@@ -5,7 +5,7 @@
     <data>
         <variable
             name="service"
-            type="com.example.potatoservice.ui.home.HomeViewModel" />
+            type="com.example.potatoservice.ui.home.Service" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -27,35 +27,36 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/service_image">
+            app:layout_constraintStart_toEndOf="@+id/service_image"
+            android:layout_marginStart="20dp">
             <TextView
                 android:id="@+id/service_title"
-                android:layout_width="wrap_content"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:text="@{service.title}"
                 android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
             <TextView
                 android:id="@+id/service_organization_service_category"
-                android:layout_width="wrap_content"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:text="@{service.organization + ' ' + '|' + ' ' + service.category}"
                 />
             <TextView
                 android:id="@+id/service_recruitment"
-                android:layout_width="wrap_content"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:text="@{service.recruitmentPeriod + ' ' + '|' + ' ' + service.recruitmentNumber}"
                 />
             <TextView
                 android:id="@+id/service_time"
-                android:layout_width="wrap_content"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:text="@{service.time + ' ' + '|' + ' ' + service.serviceRecognitionTime}"
                 />
             <TextView
                 android:id="@+id/service_location"
-                android:layout_width="wrap_content"
+                android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:text="@{service.location}"/>
 
