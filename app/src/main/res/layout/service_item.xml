@@ -27,7 +27,8 @@
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/service_image">
+            app:layout_constraintStart_toEndOf="@+id/service_image"
+            android:layout_marginStart="20dp">
             <TextView
                 android:id="@+id/service_title"
                 android:layout_width="wrap_content"
