@@ -26,11 +26,10 @@ class MainActivity : AppCompatActivity() {
 		// menu should be considered as top level destinations.
 		val appBarConfiguration = AppBarConfiguration(
 			setOf(
-				R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications
+				R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_map
 			)
 		)
-		//타이틀바 없애면 오류 남.
-//		setupActionBarWithNavController(navController, appBarConfiguration)
-//		navView.setupWithNavController(navController)
+		setupActionBarWithNavController(navController, appBarConfiguration)
+		navView.setupWithNavController(navController)
 	}
 }
