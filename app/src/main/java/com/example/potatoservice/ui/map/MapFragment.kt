@@ -26,6 +26,7 @@ import com.kakao.vectormap.camera.CameraUpdateFactory
 import com.kakao.vectormap.label.LabelOptions
 import com.kakao.vectormap.label.LabelStyle
 import com.kakao.vectormap.label.LabelStyles
+import com.kakao.sdk.common.util.Utility
 
 
 class MapFragment : Fragment() {
@@ -44,6 +45,9 @@ class MapFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //카카오 키해시 값 로그에 띄우기
+        var keyHash = Utility.getKeyHash(requireContext())
+        Log.d("testt", keyHash)
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
     }
 
