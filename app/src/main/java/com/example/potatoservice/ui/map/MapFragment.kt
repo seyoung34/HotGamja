@@ -60,6 +60,12 @@ class MapFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initKakaoMap()
         initMapView()
+
+        // 버튼 클릭 이벤트 처리 (대신 XML에서 onClick 속성을 사용할 수도 있습니다.)
+        binding.buttonCurrentLocation.setOnClickListener {
+            moveToCurrentLocation()
+        }
+
     }
 
     override fun onResume() {
@@ -79,6 +85,7 @@ class MapFragment : Fragment() {
         _binding = null
     }
 
+    // 여기서 부터 클래스화 시킬거 ->> 리팩토링
     private fun initKakaoMap() {
         KakaoMapSdk.init(requireContext(), getString(R.string.kakao_api_key))
     }
@@ -142,6 +149,15 @@ class MapFragment : Fragment() {
             } ?: run {
                 Toast.makeText(requireContext(), "위치를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    // 버튼 클릭 시 현재 위치로 이동하는 함수
+    private fun moveToCurrentLocation() {
+        currentLocation { latLng ->
+            val cameraUpdate = CameraUpdateFactory.newCenterPosition(latLng)
+            kakaoMap.moveCamera(cameraUpdate) // 카메라를 현재 위치로 이동
+            Toast.makeText(requireContext(), "현재 위치로 이동합니다.", Toast.LENGTH_SHORT).show()
         }
     }
 
