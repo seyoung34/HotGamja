@@ -47,4 +47,8 @@ class HomeViewModel : ViewModel() {
 			)
 		)
 	)
+	val searchResultCount = serviceList.value?.count()
+	val searchResultCountText = "총 " + searchResultCount.toString() + "건"
+
+
 }
