@@ -34,7 +34,7 @@ class HomeFragment : Fragment(), AdapterCallback {
 
 	private fun setRecyclerAdapter(){
 		binding.searchResultRecyclerView.layoutManager = LinearLayoutManager(activity)
-		binding.filterRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+		binding.spinnerRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
 		searchResultAdapter = SearchResultAdapter(this)
 	}
 
