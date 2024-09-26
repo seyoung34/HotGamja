@@ -6,37 +6,42 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.potatoservice.databinding.FragmentHomeBinding
 
-class HomeFragment : Fragment() {
+class HomeFragment : Fragment(), AdapterCallback {
 
-	private var _binding: FragmentHomeBinding? = null
-
-	// This property is only valid between onCreateView and
-	// onDestroyView.
-	private val binding get() = _binding!!
-
+	private lateinit var binding: FragmentHomeBinding
+	private lateinit var searchResultAdapter: SearchResultAdapter
+	private lateinit var homeViewModel: HomeViewModel
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		val homeViewModel =
-			ViewModelProvider(this).get(HomeViewModel::class.java)
+		homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
-		_binding = FragmentHomeBinding.inflate(inflater, container, false)
-		val root: View = binding.root
+		binding = FragmentHomeBinding.inflate(inflater, container, false)
+		setRecyclerAdapter()
 
-		val textView: TextView = binding.textHome
-		homeViewModel.text.observe(viewLifecycleOwner) {
-			textView.text = it
-		}
-		return root
+		homeViewModel.serviceList.observe(viewLifecycleOwner, Observer { service ->
+			searchResultAdapter.submitList(service)
+			binding.searchResultRecyclerView.adapter = searchResultAdapter
+		})
+
+		return binding.root
 	}
 
-	override fun onDestroyView() {
-		super.onDestroyView()
-		_binding = null
+	private fun setRecyclerAdapter(){
+		binding.searchResultRecyclerView.layoutManager = LinearLayoutManager(activity)
+		binding.filterRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+		searchResultAdapter = SearchResultAdapter(this)
 	}
+
+	override fun onClicked(service: Service) {
+		//봉사 카드 클릭 시 상세 페이지로 이동 기능 추가 예정.
+	}
+
 }
