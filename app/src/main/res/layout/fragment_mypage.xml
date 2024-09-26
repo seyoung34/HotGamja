@@ -53,7 +53,7 @@
             android:id="@+id/ivStageImage"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/potato_LV_1"
+            android:src="@drawable/potato_lv1"
             app:layout_constraintTop_toBottomOf="@id/tvProgressPercent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
