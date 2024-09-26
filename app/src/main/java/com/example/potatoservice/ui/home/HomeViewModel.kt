@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class HomeViewModel : ViewModel() {
+
 	var title = "봉사 활동 제목"
 	var organization = "봉사 기관 이름"
 	var category = "봉사 분야"
@@ -13,6 +14,7 @@ class HomeViewModel : ViewModel() {
 	var time = "활동 기간"
 	var serviceRecognitionTime = "봉사 인정 시간"
 	var location = "상세 장소"
+
 	val serviceList:LiveData<List<Service>> = MutableLiveData(
 		listOf(
 			Service(title, organization, category,
