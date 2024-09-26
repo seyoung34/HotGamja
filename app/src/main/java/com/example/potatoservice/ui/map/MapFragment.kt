@@ -124,7 +124,7 @@ class MapFragment : Fragment() {
     private fun setMarker() {
         val latitude = 37.402005
         val longitude = 127.108621
-        var styles = LabelStyles.from(LabelStyle.from(R.drawable.ic_marker).setZoomLevel(5))
+        var styles = LabelStyles.from(LabelStyle.from(R.drawable.ic_map_marker).setZoomLevel(5))
         styles = kakaoMap.labelManager!!.addLabelStyles(styles!!)
         kakaoMap.labelManager!!.layer!!.addLabel(
             LabelOptions.from(LatLng.from(latitude, longitude))
