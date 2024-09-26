@@ -1,4 +1,4 @@
-package com.example.potatoservice.ui.home
+package com.example.potatoservice.ui.share
 
 import android.content.Context
 import android.graphics.Color

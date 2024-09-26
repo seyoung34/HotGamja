@@ -1,19 +1,16 @@
-package com.example.potatoservice.ui.home
+package com.example.potatoservice.ui.share
 
 import android.R
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.potatoservice.databinding.SpinnerItemBinding
-import org.w3c.dom.Text
 
 class SpinnerAdapter(
-	private val items: List<List<String>>
+	private val items: List<List<String>>,
+	private val callback: AdapterCallback
 ): RecyclerView.Adapter<SpinnerAdapter.SpinnerViewHolder>() {
 	private lateinit var binding: SpinnerItemBinding
 	inner class SpinnerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,7 +29,7 @@ class SpinnerAdapter(
 
 	override fun onBindViewHolder(holder: SpinnerViewHolder, position: Int) {
 		val spinnerItems = items[position]
-
+		val spinnerPosition = position
 		val adapter = SpinnerHintAdapter(
 			holder.spinner.context, R.layout.simple_spinner_dropdown_item, spinnerItems)
 		holder.spinner.adapter = adapter
@@ -44,8 +41,7 @@ class SpinnerAdapter(
 				position: Int,
 				id: Long
 			) {
-				val selectedItem = parent?.getItemAtPosition(position)?.toString()
-				Log.d("testt", "selectedItem: $selectedItem")
+				callback.onSpinnerSelected(spinnerPosition, position)
 			}
 
 			override fun onNothingSelected(parent: AdapterView<*>?) {
