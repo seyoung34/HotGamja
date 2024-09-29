@@ -103,9 +103,9 @@ class MapFragment : Fragment() {
 
             override fun onMapError(error: Exception) {
                 val errorMessage = when ((error as? MapAuthException)?.errorCode) {
-                    401 -> "API 인증에 실패"
-                    499 -> "서버 통신 실패"
-                    else -> "알 수 없는 오류"
+                    401 -> getString(R.string.error_auth_failure)
+                    499 -> getString(R.string.error_server_communication_failure)
+                    else -> getString(R.string.error_unknown)
                 }
                 Toast.makeText(requireContext(), errorMessage, Toast.LENGTH_SHORT).show()
             }
@@ -128,7 +128,7 @@ class MapFragment : Fragment() {
     private fun setMarker() {
         val latitude = 37.402005
         val longitude = 127.108621
-        var styles = LabelStyles.from(LabelStyle.from(R.drawable.ic_marker).setZoomLevel(5))
+        var styles = LabelStyles.from(LabelStyle.from(R.drawable.ic_map_marker).setZoomLevel(5))
         styles = kakaoMap.labelManager!!.addLabelStyles(styles!!)
         kakaoMap.labelManager!!.layer!!.addLabel(
             LabelOptions.from(LatLng.from(latitude, longitude))
