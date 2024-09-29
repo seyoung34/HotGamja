@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.potatoservice.R
+import com.example.potatoservice.ui.share.Volunteer
 
 class VolunteerAdapter(private val volunteerList: List<Volunteer>) :
     RecyclerView.Adapter<VolunteerAdapter.VolunteerViewHolder>() {
