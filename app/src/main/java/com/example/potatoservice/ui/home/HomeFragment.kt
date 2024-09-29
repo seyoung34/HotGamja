@@ -25,10 +25,12 @@ class HomeFragment : Fragment(), AdapterCallback {
 
 		binding = FragmentHomeBinding.inflate(inflater, container, false)
 		setRecyclerAdapter()
+
 		homeViewModel.serviceList.observe(viewLifecycleOwner, Observer { service ->
 			searchResultAdapter.submitList(service)
 			binding.searchResultRecyclerView.adapter = searchResultAdapter
 		})
+
 		return binding.root
 	}
 
