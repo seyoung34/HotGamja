@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.potatoservice.databinding.ServiceItemBinding
+import com.example.potatoservice.ui.share.AdapterCallback
 
 class SearchResultAdapter(
 	private val callback: AdapterCallback

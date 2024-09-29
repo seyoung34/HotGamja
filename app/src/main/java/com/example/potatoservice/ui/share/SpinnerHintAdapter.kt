@@ -3,11 +3,9 @@ package com.example.potatoservice.ui.share
 import android.content.Context
 import android.graphics.Color
 import android.graphics.Typeface
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import android.widget.LinearLayout
 import android.widget.TextView
 
 class SpinnerHintAdapter(context: Context, resource: Int, objects: List<String>) :
