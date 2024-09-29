@@ -3,6 +3,7 @@ package com.example.potatoservice.ui.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.potatoservice.ui.share.Volunteer
 
 class HomeViewModel : ViewModel() {
 
@@ -14,38 +15,39 @@ class HomeViewModel : ViewModel() {
 	var time = "활동 기간"
 	var serviceRecognitionTime = "봉사 인정 시간"
 	var location = "상세 장소"
+	var status = "확정 상태"
 
-	val serviceList:LiveData<List<Service>> = MutableLiveData(
+	val serviceList:LiveData<List<Volunteer>> = MutableLiveData(
 		listOf(
-			Service(title, organization, category,
+			Volunteer(title, organization, category,
 				recruitmentPeriod, recruitmentNumber, time,
-				serviceRecognitionTime, location
+				serviceRecognitionTime, location, status
 			),
-			Service("봉사 활동 제목 12345678912345678911111111끝",
+			Volunteer("봉사 활동 제목 12345678912345678911111111끝",
 				"조직11111111111111111111111끝", "category111111111111111111끝",
 				"recruitmentPeriod",
 				"recruitmentNumber11111111111111111111111111끝", "time",
-				"serviceRecognitionTime", "location"
+				"serviceRecognitionTime", "location", "확정"
 			),
-			Service("title", "organization", "category",
+			Volunteer("title", "organization", "category",
 				"recruitmentPeriod", "recruitmentNumber", "time",
-				"serviceRecognitionTime", "location"
+				"serviceRecognitionTime", "location", "status"
 			),
-			Service("title", "organization", "category",
+			Volunteer("title", "organization", "category",
 				"recruitmentPeriod", "recruitmentNumber", "time",
-				"serviceRecognitionTime", "location"
+				"serviceRecognitionTime", "location", "status"
 			),
-			Service("title", "organization", "category",
+			Volunteer("title", "organization", "category",
 				"recruitmentPeriod", "recruitmentNumber", "time",
-				"serviceRecognitionTime", "location"
+				"serviceRecognitionTime", "location", "status"
 			),
-			Service("title", "organization", "category",
+			Volunteer("title", "organization", "category",
 				"recruitmentPeriod", "recruitmentNumber", "time",
-				"serviceRecognitionTime", "location"
+				"serviceRecognitionTime", "location", "status"
 			),
-			Service(title, organization, category,
+			Volunteer(title, organization, category,
 				recruitmentPeriod, recruitmentNumber, time,
-				serviceRecognitionTime, location
+				serviceRecognitionTime, location, status
 			)
 		)
 	)
