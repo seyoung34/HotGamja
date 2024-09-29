@@ -30,6 +30,7 @@ class HomeFragment : Fragment(), AdapterCallback {
 		binding = FragmentHomeBinding.inflate(inflater, container, false)
 		binding.viewModel = homeViewModel
 		setRecyclerAdapter()
+
 		setSpinner()
 		return binding.root
 	}
