@@ -37,19 +37,38 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 android:src="@drawable/magnifier"
-                app:layout_constraintBottom_toTopOf="@+id/spinner_recycler_view"
+                app:layout_constraintBottom_toTopOf="@+id/spinner_scroll_view"
                 app:layout_constraintStart_toEndOf="@+id/search_bar" />
         </LinearLayout>
 
 
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/spinner_recycler_view"
+        <HorizontalScrollView
+            android:id="@+id/spinner_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/search_bar_layout"/>
+            app:layout_constraintTop_toBottomOf="@+id/search_bar_layout">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Spinner
+                    android:id="@+id/major_regional_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:id="@+id/minor_regional_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:id="@+id/volunteer_activities_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </HorizontalScrollView>
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,7 +78,7 @@
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_recycler_view">
+            app:layout_constraintTop_toBottomOf="@+id/spinner_scroll_view">
 
             <TextView
                 android:layout_width="200dp"
