@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.potatoservice.databinding.FragmentHomeBinding
 import com.example.potatoservice.ui.share.AdapterCallback
 import com.example.potatoservice.ui.share.SpinnerHintAdapter
+import com.example.potatoservice.ui.share.Volunteer
 
 class HomeFragment : Fragment(), AdapterCallback {
 
@@ -106,7 +107,7 @@ class HomeFragment : Fragment(), AdapterCallback {
 		}
 	}
 
-	override fun onClicked(service: Service) {
+	override fun onClicked(volunteer: Volunteer) {
 		//봉사 카드 클릭 시 상세 페이지로 이동 기능 추가 예정.
 	}
 
