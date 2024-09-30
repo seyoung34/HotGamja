@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.potatoservice.databinding.ItemVolunteerBinding
 import com.example.potatoservice.ui.share.Volunteer
 
-class VolunteerAdapter(private val volunteerList: List<Volunteer>) :
+class VolunteerAdapter(private val volunteerList: List<Volunteer>, private val listener: OnVolunteerClickListener) :
     RecyclerView.Adapter<VolunteerAdapter.VolunteerViewHolder>() {
 
     inner class VolunteerViewHolder(val binding: ItemVolunteerBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -21,6 +21,9 @@ class VolunteerAdapter(private val volunteerList: List<Volunteer>) :
             binding.tvVolunteerHours.text = volunteer.volunteerHours
             binding.tvVolunteerAddress.text = volunteer.address
             binding.tvVolunteerStatus.text = volunteer.status
+            binding.btnAction.setOnClickListener {
+                listener.onVolunteerClick(volunteer)
+            }
         }
     }
 
