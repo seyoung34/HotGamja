@@ -50,6 +50,7 @@ class MyPageFragment : Fragment() {
 
     // RecyclerView 설정 함수
     private fun setupRecyclerView() {
+
         // 예시 데이터 리스트 생성
         val volunteers = listOf(
             Volunteer("봉사활동 1", "기관 A", "교육", "2024.09.01 ~ 2024.09.30", "0/5", "2024.10.01 ~ 2024.10.31", "132시간", "서울특별시", "확정 대기 중"),
