@@ -74,6 +74,5 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener{
     override fun onVolunteerClick(volunteer: Volunteer) {
         //todo 커스텀뷰 만들기
         Toast.makeText(context, "${volunteer.title}", Toast.LENGTH_SHORT).show()
-
     }
 }
