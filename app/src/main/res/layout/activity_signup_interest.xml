@@ -3,7 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:padding="16dp">
+    android:padding="16dp"
+
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,7 +23,7 @@
 
         <!-- 1st Row -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:gravity="center"
@@ -29,7 +31,7 @@
 
             <LinearLayout
                 android:id="@+id/educationCard"
-                android:layout_width="0dp"
+                android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_interest_custom_card_background_selector"
@@ -53,7 +55,7 @@
 
             <LinearLayout
                 android:id="@+id/supportCard"
-                android:layout_width="0dp"
+                android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
@@ -79,7 +81,7 @@
 
         <!-- 2nd Row -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:gravity="center"
@@ -87,7 +89,7 @@
 
             <LinearLayout
                 android:id="@+id/culturalEventCard"
-                android:layout_width="0dp"
+                android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_interest_custom_card_background_selector"
@@ -111,7 +113,7 @@
 
             <LinearLayout
                 android:id="@+id/medicalCard"
-                android:layout_width="0dp"
+                android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
@@ -137,7 +139,7 @@
 
         <!-- 3rd Row -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:gravity="center"
@@ -145,7 +147,7 @@
 
             <LinearLayout
                 android:id="@+id/safetyCard"
-                android:layout_width="0dp"
+                android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_weight="1"
                 android:background="@drawable/ic_interest_custom_card_background_selector"
@@ -169,7 +171,7 @@
 
             <LinearLayout
                 android:id="@+id/internationalEventCard"
-                android:layout_width="0dp"
+                android:layout_width="110dp"
                 android:layout_height="110dp"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
