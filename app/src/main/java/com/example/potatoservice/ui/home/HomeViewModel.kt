@@ -54,6 +54,8 @@ class HomeViewModel : ViewModel() {
 	val searchResultCount = serviceList.value?.count()
 	val searchResultCountText = "총 " + searchResultCount.toString() + "건"
 
+	//정렬
+	val sortList = listOf("최신순", "거리순", "마감 임박순")
 	//지역 대분류
 	val majorRegoinList = listOf("지역 대분류", "경기", "대구", "서울")
 	//지역 소분류
@@ -63,7 +65,8 @@ class HomeViewModel : ViewModel() {
 	//봉사 분야
 	val volunteerList = listOf("봉사 분야", "생활지원 및 주거환경 개선", "교육 및 멘토링", "행정 및 사무지원",
 		"문화, 환경 및 국제협력 활동", "보건의료 및 공익활동", "상담 및 자원봉사 교육", "기타 활동")
-
+	//나이 제한
+	val ageList = listOf("나이 제한 없음", "청소년만", "성인만")
 
 
 }

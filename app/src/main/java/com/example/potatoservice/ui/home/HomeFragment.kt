@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -45,6 +46,24 @@ class HomeFragment : Fragment(), AdapterCallback {
 	}
 	//필터들 설정
 	private fun setSpinner(){
+		binding.sort.adapter = ArrayAdapter(
+			requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.sortList)
+		//정렬 선택 시
+		binding.sort.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+			override fun onItemSelected(
+				parent: AdapterView<*>?,
+				view: View?,
+				position: Int,
+				id: Long
+			) {
+
+			}
+
+			override fun onNothingSelected(parent: AdapterView<*>?) {
+
+			}
+
+		}
 		binding.majorRegionalCategories.adapter = SpinnerHintAdapter(
 			requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.majorRegoinList)
 		//지역 대분류 선택 시
@@ -87,6 +106,24 @@ class HomeFragment : Fragment(), AdapterCallback {
 			requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.volunteerList)
 		//봉사 분야 선택 시
 		binding.volunteerActivitiesCategories.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
+			override fun onItemSelected(
+				parent: AdapterView<*>?,
+				view: View?,
+				position: Int,
+				id: Long
+			) {
+
+			}
+
+			override fun onNothingSelected(parent: AdapterView<*>?) {
+
+			}
+
+		}
+		binding.ageCategories.adapter = SpinnerHintAdapter(
+			requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.ageList)
+		//나이 제한 선택 시
+		binding.ageCategories.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
 			override fun onItemSelected(
 				parent: AdapterView<*>?,
 				view: View?,
