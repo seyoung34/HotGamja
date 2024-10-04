@@ -20,7 +20,6 @@ class HomeFragment : Fragment(), AdapterCallback {
 	private lateinit var binding: FragmentHomeBinding
 	private lateinit var searchResultAdapter: SearchResultAdapter
 	private lateinit var homeViewModel: HomeViewModel
-	private var selectedSpinnerNum = 0
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
@@ -35,7 +34,7 @@ class HomeFragment : Fragment(), AdapterCallback {
 		setSpinner()
 		return binding.root
 	}
-
+	//검색 결과 리사이클러뷰 설정
 	private fun setRecyclerAdapter(){
 		binding.searchResultRecyclerView.layoutManager = LinearLayoutManager(activity)
 		searchResultAdapter = SearchResultAdapter(this)
@@ -44,10 +43,11 @@ class HomeFragment : Fragment(), AdapterCallback {
 			binding.searchResultRecyclerView.adapter = searchResultAdapter
 		})
 	}
-
+	//필터들 설정
 	private fun setSpinner(){
 		binding.majorRegionalCategories.adapter = SpinnerHintAdapter(
 			requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.majorRegoinList)
+		//지역 대분류 선택 시
 		binding.majorRegionalCategories.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
 			override fun onItemSelected(
 				parent: AdapterView<*>?,
@@ -55,15 +55,9 @@ class HomeFragment : Fragment(), AdapterCallback {
 				position: Int,
 				id: Long
 			) {
-				if(position == 0 && selectedSpinnerNum != 0){
-					binding.minorRegionalCategories.adapter = SpinnerHintAdapter(
-						requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.minorRegoinList.value!![selectedSpinnerNum])
-				}
-				else{
-					selectedSpinnerNum = position
-					binding.minorRegionalCategories.adapter = SpinnerHintAdapter(
-						requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.minorRegoinList.value!![selectedSpinnerNum])
-				}
+				//지역 대분류 선택에 따라 소분류 목록이 바뀜
+				binding.minorRegionalCategories.adapter = SpinnerHintAdapter(
+					requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.minorRegoinList[position])
 			}
 
 			override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -72,7 +66,8 @@ class HomeFragment : Fragment(), AdapterCallback {
 
 		}
 		binding.minorRegionalCategories.adapter = SpinnerHintAdapter(
-			requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.minorRegoinList.value!![selectedSpinnerNum])
+			requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.minorRegoinList[0])
+		//지역 소분류 선택 시
 		binding.minorRegionalCategories.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
 			override fun onItemSelected(
 				parent: AdapterView<*>?,
@@ -90,6 +85,7 @@ class HomeFragment : Fragment(), AdapterCallback {
 		}
 		binding.volunteerActivitiesCategories.adapter = SpinnerHintAdapter(
 			requireContext(), R.layout.simple_spinner_dropdown_item, homeViewModel.volunteerList)
+		//봉사 분야 선택 시
 		binding.volunteerActivitiesCategories.onItemSelectedListener = object :AdapterView.OnItemSelectedListener{
 			override fun onItemSelected(
 				parent: AdapterView<*>?,
