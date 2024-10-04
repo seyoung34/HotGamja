@@ -20,7 +20,7 @@ interface APIService {
     @POST("/api/interests")
     fun sendUserInterest(
         @Body userInterest: UserInterest
-    ): Call<Void>
+    ): Call<ResponseBody>
 
 
 
