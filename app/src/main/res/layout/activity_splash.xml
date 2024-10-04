@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:src="@drawable/ic_signup_logo_potato" />
+        android:src="@drawable/ic_splash_logo_potato" />
 
     <!-- 하단에 배치된 카카오 로그인 버튼 -->
     <Button
@@ -23,7 +23,7 @@
         android:backgroundTint="#FEE500"
         android:text="카카오 로그인"
         android:textColor="#000000"
-        android:drawableStart="@drawable/ic_kakao_logo"
+        android:drawableStart="@drawable/ic_splash_kakao_logo"
         android:padding="16dp" />
 
 </RelativeLayout>
