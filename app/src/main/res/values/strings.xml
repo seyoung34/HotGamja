@@ -18,4 +18,7 @@
     <!-- HomeFragment -->
     <string name="closed_volunteer_look">마감된 봉사 보기</string>
     <string name="detail">상세 보기</string>
+    <string name="review1">고지된 업무 내용이 실제와 일치하였나요?</string>
+    <string name="review2">담당자는 친절하였나요?</string>
+    <string name="review3">다음에도 참여하고 싶으신가요?</string>
 </resources>
