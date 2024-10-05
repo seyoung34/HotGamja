@@ -21,4 +21,7 @@
     <string name="review1">고지된 업무 내용이 실제와 일치하였나요?</string>
     <string name="review2">담당자는 친절하였나요?</string>
     <string name="review3">다음에도 참여하고 싶으신가요?</string>
+    <string name="volunteer_address">봉사 활동 위치</string>
+    <string name="call">전화로 문의하기</string>
+    <string name="request">신청하기</string>
 </resources>

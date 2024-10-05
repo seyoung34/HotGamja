@@ -1,10 +1,7 @@
 package com.example.potatoservice.ui.detail
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.databinding.DataBindingUtil
 import com.example.potatoservice.R
 import com.example.potatoservice.databinding.ActivityDetailBinding
