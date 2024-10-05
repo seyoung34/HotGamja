@@ -1,6 +1,7 @@
 package com.example.potatoservice.ui.home
 
 import android.R
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.potatoservice.databinding.FragmentHomeBinding
+import com.example.potatoservice.ui.detail.DetailActivity
 import com.example.potatoservice.ui.share.AdapterCallback
 import com.example.potatoservice.ui.share.SpinnerHintAdapter
 import com.example.potatoservice.ui.share.Volunteer
@@ -140,8 +142,11 @@ class HomeFragment : Fragment(), AdapterCallback {
 		}
 	}
 
-	override fun onClicked(volunteer: Volunteer) {
+	override fun onClicked(id: Int) {
 		//봉사 카드 클릭 시 상세 페이지로 이동 기능 추가 예정.
+		val intent = Intent(requireContext(), DetailActivity::class.java)
+		intent.putExtra("id", id) // 데이터 추가
+		startActivity(intent)
 	}
 
 }

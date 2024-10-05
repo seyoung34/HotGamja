@@ -30,7 +30,8 @@ class SearchResultAdapter(
 
 		init {
 			itemView.setOnClickListener {
-				callback.onClicked(getItem(adapterPosition))
+				//차후 아이디로 변경해야 함.
+				callback.onClicked(adapterPosition)
 			}
 		}
 	}

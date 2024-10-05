@@ -17,4 +17,5 @@
 
     <!-- HomeFragment -->
     <string name="closed_volunteer_look">마감된 봉사 보기</string>
+    <string name="detail">상세 보기</string>
 </resources>
