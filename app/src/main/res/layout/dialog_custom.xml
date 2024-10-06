@@ -39,15 +39,16 @@
 
     <TextView
         android:id="@+id/custom_dialog_content"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/custom_dialog_image"
         android:text="테스트테스트테스트"
         android:textSize="24sp"
         android:textColor="#424242"
-        android:layout_marginTop="30dp"/>
+        android:layout_marginTop="20dp"/>
 
     <Button
         android:id="@+id/custom_dialog_positive"
@@ -58,8 +59,9 @@
         android:textColor="#424242"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/custom_dialog_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginEnd="150dp"/>
 
     <Button
@@ -71,8 +73,9 @@
         android:textColor="#424242"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/custom_dialog_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
         android:layout_marginStart="150dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

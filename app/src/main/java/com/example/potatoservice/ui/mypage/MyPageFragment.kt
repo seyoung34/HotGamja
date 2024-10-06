@@ -1,18 +1,14 @@
 package com.example.potatoservice.ui.mypage
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.potatoservice.R
 import com.example.potatoservice.databinding.FragmentMypageBinding
-import com.example.potatoservice.ui.share.CustomDialogFragment
 import com.example.potatoservice.ui.share.Volunteer
 
 class MyPageFragment : Fragment(), OnVolunteerClickListener{
@@ -74,10 +70,15 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener{
     }
 
     override fun onVolunteerClick(volunteer: Volunteer) {
-        //todo 커스텀뷰 만들기
-//        Toast.makeText(context, "${volunteer.title}", Toast.LENGTH_SHORT).show()
 
-        val customDialog = CustomDialogFragment()
+        val customDialog = CustomDialogFragment.newInstance(
+            title = "테스트제목",
+            image = R.drawable.potato_lv1,
+            content = "1긴테스트내용2긴테스트내용3긴테스트내용4긴테스트내용5긴테스트내용6긴테스트내용7긴테스트내/용8긴테스트내용9긴테스트내용"
+        ) //MAX 24sp 기준 띄어쓰기 포함 50글자
+
+            //TODO content 50글자 넘을 시 처리
+
         customDialog.show(parentFragmentManager,"customDialog")
 
     }
