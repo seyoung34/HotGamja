@@ -18,6 +18,14 @@ class CustomDialogFragment : DialogFragment() {
 
     private lateinit var binding : DialogCustomBinding
 
+    // 다이얼로그에서 발생한 클릭 이벤트를 전달할 인터페이스
+    interface OnDialogButtonClickListener {
+        fun onPositiveButtonClick()
+        fun onNegativeButtonClick()
+    }
+
+    private var listener: OnDialogButtonClickListener? = null
+
     companion object {
         private const val ARG_TITLE = "title"
         private const val ARG_IMAGE = "image"
@@ -56,16 +64,18 @@ class CustomDialogFragment : DialogFragment() {
 
         // 닫기 버튼 이벤트 처리
         binding.customDialogClose.setOnClickListener {
-            dismiss()
+//            dismiss()
         }
 
         // 긍정 버튼 이벤트 처리
         binding.customDialogPositive.setOnClickListener {
+            listener?.onPositiveButtonClick()
             dismiss()
         }
 
         // 부정 버튼 이벤트 처리
         binding.customDialogNegative.setOnClickListener {
+            listener?.onNegativeButtonClick()
             dismiss()
         }
 
@@ -73,6 +83,7 @@ class CustomDialogFragment : DialogFragment() {
 
         return binding.root
     }
+
 
     // 사이즈 조절
     override fun onStart() {
@@ -101,4 +112,11 @@ class CustomDialogFragment : DialogFragment() {
 //        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 //        dialog?.window?.clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
 //    }
+
+    fun setDialogListener(listener: OnDialogButtonClickListener) {
+        this.listener = listener
+    }
+
 }
+
+

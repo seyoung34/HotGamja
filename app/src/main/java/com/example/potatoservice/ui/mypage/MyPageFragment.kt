@@ -1,6 +1,7 @@
 package com.example.potatoservice.ui.mypage
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +12,15 @@ import com.example.potatoservice.R
 import com.example.potatoservice.databinding.FragmentMypageBinding
 import com.example.potatoservice.ui.share.Volunteer
 
-class MyPageFragment : Fragment(), OnVolunteerClickListener{
+class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragment.OnDialogButtonClickListener{
 
     private lateinit var binding: FragmentMypageBinding
     private lateinit var myPageViewModel: MyPageViewModel
+    private lateinit var customDialog : CustomDialogFragment
+
+    var dialogShowCount = 0
+    var positiveCount = 0
+    var negativeCount = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,15 +77,43 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener{
 
     override fun onVolunteerClick(volunteer: Volunteer) {
 
-        val customDialog = CustomDialogFragment.newInstance(
-            title = "테스트제목",
-            image = R.drawable.potato_lv1,
-            content = "1긴테스트내용2긴테스트내용3긴테스트내용4긴테스트내용5긴테스트내용6긴테스트내용7긴테스트내/용8긴테스트내용9긴테스트내용"
-        ) //MAX 24sp 기준 띄어쓰기 포함 50글자
+//        val customDialog = CustomDialogFragment.newInstance(
+//            title = "테스트제목",
+//            image = R.drawable.potato_lv1,
+//            content = "1긴테스트내용2긴테스트내용3긴테스트내용4긴테스트내용5긴테스트내용6긴테스트내용7긴테스트내/용8긴테스트내용9긴테스트내용"
+//        ) //MAX 24sp 기준 띄어쓰기 포함 50글자
+//            //TODO content 50글자 넘을 시 처리
 
-            //TODO content 50글자 넘을 시 처리
+        dialogShowCount = 0
+        positiveCount = 0
+        negativeCount = 0
+        showDialog()
+    }
 
-        customDialog.show(parentFragmentManager,"customDialog")
+    fun showDialog(){
 
+        if(dialogShowCount<5){
+            customDialog = CustomDialogFragment.newInstance(
+                "제목${dialogShowCount}",
+                R.drawable.potato_lv1,
+                "내용${dialogShowCount}"
+            )
+            customDialog.setDialogListener(this@MyPageFragment)
+            customDialog.show(parentFragmentManager,"customDialog")
+            dialogShowCount++
+        }
+        else{
+            Log.d("seyoung","positive : ${positiveCount}, negative : ${negativeCount}")
+        }
+    }
+
+    override fun onPositiveButtonClick() {
+        positiveCount++ // 긍정 버튼 클릭 카운트 증가
+        showDialog() // 다음 다이얼로그 호출
+    }
+
+    override fun onNegativeButtonClick() {
+        negativeCount++ // 부정 버튼 클릭 카운트 증가
+        showDialog() // 다음 다이얼로그 호출
     }
 }
