@@ -16,7 +16,7 @@ import com.example.potatoservice.databinding.DialogCustomBinding
 
 class CustomDialogFragment : DialogFragment() {
 
-    private lateinit var binding : DialogCustomBinding
+    private lateinit var binding: DialogCustomBinding
 
     // 다이얼로그에서 발생한 클릭 이벤트를 전달할 인터페이스
     interface OnDialogButtonClickListener {
@@ -48,7 +48,7 @@ class CustomDialogFragment : DialogFragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        binding = DialogCustomBinding.inflate(inflater,container,false)
+        binding = DialogCustomBinding.inflate(inflater, container, false)
 //        dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))   //모서리 투명하게, 없어도 되는 것 같기도..
 //        dialog?.window?.requestFeature(Window.FEATURE_NO_TITLE) //다이얼로그의 타이틀바 제거 //없어도 되는 것 같기도..
 
@@ -102,7 +102,6 @@ class CustomDialogFragment : DialogFragment() {
         dialog?.window?.setLayout(dialogWidth, dialogHeight)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
-
 
 
 //    override fun onResume() {

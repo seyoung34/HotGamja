@@ -42,7 +42,6 @@ class MapFragment : Fragment() {
     private var isCardViewVisible = false // 카드뷰의 현재 상태를 저장
 
 
-
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var curLat: Double = 0.0
     private var curLon: Double = 0.0
@@ -133,11 +132,13 @@ class MapFragment : Fragment() {
     }
 
 
-
-
-
     // MarkerData 클래스 정의 (위치 및 정보를 담고 있음)
-    data class MarkerData(val latLng: LatLng, val title: String, val address: String, val description: String)
+    data class MarkerData(
+        val latLng: LatLng,
+        val title: String,
+        val address: String,
+        val description: String
+    )
 
     private fun setMarker() {
         // 10개의 임의의 좌표와 정보를 생성
@@ -168,7 +169,11 @@ class MapFragment : Fragment() {
 
         // 카카오맵의 라벨 클릭 리스너 설정
         kakaoMap.setOnLabelClickListener(object : KakaoMap.OnLabelClickListener {
-            override fun onLabelClicked(kakaoMap: KakaoMap, layer: LabelLayer, clickedLabel: Label) {
+            override fun onLabelClicked(
+                kakaoMap: KakaoMap,
+                layer: LabelLayer,
+                clickedLabel: Label
+            ) {
                 // 클릭된 라벨의 tag에서 MarkerData를 가져와 카드뷰를 업데이트
                 val markerData = clickedLabel.tag as MarkerData
                 updateCardView(markerData)
@@ -196,15 +201,18 @@ class MapFragment : Fragment() {
     }
 
 
-
-
-
-
-
     private fun currentLocation(onLocationRetrieved: (LatLng) -> Unit) {
-        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(
+                requireContext(),
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
             Toast.makeText(requireContext(), "위치 권한이 필요합니다.", Toast.LENGTH_SHORT).show()
-            ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1)
+            ActivityCompat.requestPermissions(
+                requireActivity(),
+                arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+                1
+            )
             return
         }
 

@@ -26,7 +26,6 @@ class MapViewModel : ViewModel() {
     }
 
     data class LocationData(
-        val latitude: Double,
-        val longitude: Double
+        val latitude: Double, val longitude: Double
     )
 }
