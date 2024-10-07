@@ -8,7 +8,6 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.databinding.DataBindingUtil
 import com.example.potatoservice.R
 import com.example.potatoservice.databinding.ActivityDetailBinding
@@ -37,6 +36,11 @@ class DetailActivity : AppCompatActivity() {
 	private var curLat: Double = 0.0
 	private var curLon: Double = 0.0
 	private lateinit var kakaoMap: KakaoMap
+	//리뷰 퍼센트지 값
+	var review1 = "50"
+	var review2 = "40"
+	var review3 = "30"
+
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
@@ -45,6 +49,7 @@ class DetailActivity : AppCompatActivity() {
 		id = intent.getIntExtra("id", 0)
 		binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
 		binding.volunteer = getVolunteer(id)
+		binding.detail = this
 		setProgress()
 		//지도 기능들
 		initKakaoMap()
@@ -64,11 +69,11 @@ class DetailActivity : AppCompatActivity() {
 			"serviceRecognitionTime", "location", "확정"
 		)
 	}
-
+	//리뷰 표시
 	private fun setProgress(){
-		binding.progressBar1.progress = 50
-		binding.progressBar2.progress = 50
-		binding.progressBar3.progress = 50
+		binding.progressBar1.progress = review1.toInt()
+		binding.progressBar2.progress = review2.toInt()
+		binding.progressBar3.progress = review3.toInt()
 	}
 	//지도 기능들
 	override fun onResume() {
