@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="2dp"
-    android:background="@drawable/background_item_volunteer"
+    android:background="@drawable/bg_item_volunteer"
     android:padding="12dp">
 
 
@@ -119,14 +119,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvVolunteerAddress" />
 
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_splash_logo_potato"
+        app:layout_constraintTop_toTopOf="@id/btnAction"
+        app:layout_constraintBottom_toBottomOf="@id/btnAction"
+        app:layout_constraintEnd_toStartOf="@id/btnAction"/>
+
     <!-- 상태에 따라 다른 버튼 -->
     <Button
         android:id="@+id/btnAction"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
+        android:background="@drawable/bg_plain"
         android:text="수행 확인하기"
-        android:textColor="@color/white"
+        android:textColor="@color/point_brown_2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvVolunteerStatus" />
 

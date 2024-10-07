@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/base_grey"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -56,7 +57,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginStart="10dp"
-            android:background="@drawable/background_item_volunteer"
+            android:background="@drawable/bg_item_volunteer"
 
             android:src="@drawable/potato_lv1"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -129,8 +130,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tvStatus2"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#C4F4FF8B"
+        android:layout_height="42dp"
+        android:background="@drawable/bg_mypage_tvstatus2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvStatus">
 
@@ -138,22 +139,25 @@
         <TextView
             android:id="@+id/tvVolunteerCount"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="36dp"
             android:layout_marginStart="20dp"
             android:gravity="center"
             android:text="총 82건"
             android:textColor="@color/black"
-            android:textSize="22sp"
+            android:textSize="15sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <!-- 토글 스위치 (스피너 또는 드롭다운) -->
         <Spinner
             android:id="@+id/myPageSpinner"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="40dp"
+            android:tooltipText="[전체보기]"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -163,7 +167,7 @@
         android:id="@+id/recyclerView"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#ffffff"
+        android:background="@color/base_grey"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"

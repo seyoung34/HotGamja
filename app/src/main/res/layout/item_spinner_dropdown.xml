@@ -5,5 +5,5 @@
     android:textSize="18sp"
     android:textColor="@color/black"
     android:padding="16dp"
-    android:background="@drawable/background_spinner"
+    android:background="@drawable/bg_spinner"
     android:gravity="center" />

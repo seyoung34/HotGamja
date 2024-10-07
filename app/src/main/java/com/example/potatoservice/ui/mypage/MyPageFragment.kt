@@ -38,7 +38,6 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
         adapter.setDropDownViewResource(R.layout.item_spinner_dropdown)
         binding.myPageSpinner.adapter = adapter
 
-
         return binding.root
     }
 
