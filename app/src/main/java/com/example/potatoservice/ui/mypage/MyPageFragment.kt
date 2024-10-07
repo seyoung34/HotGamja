@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -30,6 +31,12 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
         // ViewModel과 ViewBinding 초기화
         myPageViewModel = ViewModelProvider(this).get(MyPageViewModel::class.java)
         binding = FragmentMypageBinding.inflate(inflater, container, false)
+
+        val spinnerItems = arrayOf("전체보기", "신청완료", "확정 대기", "수행완료됨")
+//        // 커스텀 ArrayAdapter 생성
+        val adapter = ArrayAdapter(requireContext(), R.layout.item_spinner, spinnerItems)
+        adapter.setDropDownViewResource(R.layout.item_spinner_dropdown)
+        binding.myPageSpinner.adapter = adapter
 
 
         return binding.root

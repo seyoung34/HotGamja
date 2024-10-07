@@ -149,12 +149,9 @@
 
         <!-- 토글 스위치 (스피너 또는 드롭다운) -->
         <Spinner
-            android:id="@+id/spinnerStatus"
+            android:id="@+id/myPageSpinner"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:entries="@array/volunteer_status"
-            android:spinnerMode="dropdown"
-            android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
