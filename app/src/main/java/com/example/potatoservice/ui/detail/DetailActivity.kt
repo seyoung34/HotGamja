@@ -1,8 +1,10 @@
 package com.example.potatoservice.ui.detail
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -51,9 +53,16 @@ class DetailActivity : AppCompatActivity() {
 		binding.volunteer = getVolunteer(id)
 		binding.detail = this
 		setProgress()
+		//전화걸기 버튼
+		binding.callButton.setOnClickListener {
+			val phoneNumber = "12345678"
+			val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
+			startActivity(intent)
+		}
 		//지도 기능들
 		initKakaoMap()
 		setMapView()
+		//지도 현위치 버튼
 		binding.buttonCurrentLocation.setOnClickListener {
 			moveToCurrentLocation()
 		}
