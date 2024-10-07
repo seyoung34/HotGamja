@@ -60,7 +60,6 @@ class DetailActivity : AppCompatActivity() {
 			startActivity(intent)
 		}
 		//지도 기능들
-		initKakaoMap()
 		setMapView()
 		//지도 현위치 버튼
 		binding.buttonCurrentLocation.setOnClickListener {
@@ -95,9 +94,6 @@ class DetailActivity : AppCompatActivity() {
 		mapView.pause()
 	}
 
-	private fun initKakaoMap() {
-		KakaoMapSdk.init(this, getString(R.string.kakao_api_key))
-	}
 	//카카오맵 초기 설정
 	private fun setMapView(){
 		mapView = binding.detailMapView
