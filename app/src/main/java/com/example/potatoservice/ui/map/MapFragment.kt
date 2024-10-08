@@ -66,7 +66,7 @@ class MapFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initKakaoMap()
+//        initKakaoMap()
         initMapView()
 
         // 버튼 클릭 이벤트 처리 (대신 XML에서 onClick 속성을 사용할 수도 있습니다.)

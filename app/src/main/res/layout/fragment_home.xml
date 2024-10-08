@@ -58,10 +58,14 @@
             app:layout_constraintTop_toBottomOf="@+id/search_bar_layout">
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
+                <Spinner
+                    android:id="@+id/sort"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
                 <Spinner
                     android:id="@+id/major_regional_categories"
                     android:layout_width="wrap_content"
@@ -79,6 +83,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:popupBackground="@color/base_beige_1"/>
+
+                <Spinner
+                    android:id="@+id/age_categories"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
         </HorizontalScrollView>
 
@@ -110,8 +119,8 @@
                 android:textColor="#424242"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/switch_button"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                android:text="@string/closed_volunteer_look"
+                android:textSize="20sp" />
             <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/switch_button"
                 android:layout_width="wrap_content"

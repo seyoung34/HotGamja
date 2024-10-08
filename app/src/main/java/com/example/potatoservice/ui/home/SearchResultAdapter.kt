@@ -25,16 +25,18 @@ class SearchResultAdapter(
 ) {
     private lateinit var binding: ServiceItemBinding
 
+
     inner class ViewHolder(
         itemView: View
     ) : RecyclerView.ViewHolder(itemView) {
 
-        init {
-            itemView.setOnClickListener {
-                callback.onClicked(getItem(adapterPosition))
-            }
-        }
-    }
+		init {
+			itemView.setOnClickListener {
+				//차후 아이디로 변경해야 함.
+				callback.onClicked(adapterPosition)
+			}
+		}
+	}
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val inflater = LayoutInflater.from(parent.context)
