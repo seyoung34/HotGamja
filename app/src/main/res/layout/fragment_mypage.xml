@@ -11,7 +11,7 @@
         android:id="@+id/tvStatus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#ffffff"
+        android:background="@drawable/bg_mypage_tvstatus"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -21,14 +21,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Lv 1. 봉사의 새싹"
+            android:layout_marginStart="70dp"
+            android:text="Lv 1."
             android:textColor="@color/black"
             android:textSize="18sp"
 
             android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/lvStageImage"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvLevelTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="봉사의 새싹"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toEndOf="@id/tvLevel"
+            app:layout_constraintTop_toTopOf="@id/tvLevel" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -69,6 +81,7 @@
             android:id="@+id/layoutNickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
             android:layout_marginTop="16dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -88,9 +101,9 @@
                 android:id="@+id/ivEditNickname"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="50dp"
                 android:contentDescription="닉네임 수정"
-                android:src="@drawable/edit_40px" />
+                android:src="@drawable/ic_edit_40px" />
         </LinearLayout>
 
         <!-- 총 봉사 건수 및 시간 -->
@@ -145,9 +158,9 @@
             android:text="총 82건"
             android:textColor="@color/black"
             android:textSize="15sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <!-- 토글 스위치 (스피너 또는 드롭다운) -->
         <Spinner
@@ -155,9 +168,9 @@
             android:layout_width="wrap_content"
             android:layout_height="40dp"
             android:tooltipText="[전체보기]"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
