@@ -20,6 +20,7 @@ import com.example.potatoservice.ui.share.Volunteer
 
 class HomeFragment : Fragment(), AdapterCallback {
 
+
 	private lateinit var binding: FragmentHomeBinding
 	private lateinit var searchResultAdapter: SearchResultAdapter
 	private lateinit var homeViewModel: HomeViewModel
@@ -148,5 +149,6 @@ class HomeFragment : Fragment(), AdapterCallback {
 		intent.putExtra("id", id) // 데이터 추가
 		startActivity(intent)
 	}
+
 
 }
