@@ -28,11 +28,11 @@
             <EditText
                 android:id="@+id/search_bar"
                 android:layout_width="300dp"
-                android:layout_height="50dp"
+                android:layout_height="40dp"
                 android:layout_marginTop="10dp"
                 android:hint="@string/search_hint"
                 android:textColorHint="#424242"
-                android:background="#F4F1DC"
+                android:background="@drawable/bg_plain"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -51,7 +51,8 @@
             android:id="@+id/spinner_scroll_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#C4F4FF8B"
+            android:background="@color/base_beige_1"
+            android:layout_marginTop="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/search_bar_layout">
@@ -59,26 +60,25 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="#C4F4FF8B">
+                android:orientation="horizontal">
 
                 <Spinner
                     android:id="@+id/major_regional_categories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:popupBackground="#F4F1DC"/>
+                    android:popupBackground="@color/base_beige_1"/>
 
                 <Spinner
                     android:id="@+id/minor_regional_categories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:popupBackground="#F4F1DC"/>
+                    android:popupBackground="@color/base_beige_1"/>
 
                 <Spinner
                     android:id="@+id/volunteer_activities_categories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:popupBackground="#F4F1DC"/>
+                    android:popupBackground="@color/base_beige_1"/>
             </LinearLayout>
         </HorizontalScrollView>
 

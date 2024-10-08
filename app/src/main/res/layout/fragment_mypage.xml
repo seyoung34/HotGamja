@@ -167,7 +167,6 @@
             android:id="@+id/myPageSpinner"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:tooltipText="[전체보기]"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
