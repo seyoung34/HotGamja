@@ -6,27 +6,20 @@ import androidx.lifecycle.ViewModel
 import com.kakao.vectormap.LatLng
 
 class MapViewModel : ViewModel() {
-
-    // 현재 위치 저장
-    private val _currentLocation = MutableLiveData<LatLng>()
-    val currentLocation: LiveData<LatLng> get() = _currentLocation
-
-    // 카메라 위치 저장
     private val _cameraPosition = MutableLiveData<LatLng>()
-    val cameraPosition: LiveData<LatLng> get() = _cameraPosition
+    private val _zoomLevel = MutableLiveData<Int>()
 
-    // 현재 위치 업데이트 함수
-    fun updateCurrentLocation(latLng: LatLng) {
-        _currentLocation.value = latLng
+    // 마지막 위치와 줌 레벨 저장
+    fun saveLastLocation(latitude: Double, longitude: Double, zoom: Int) {
+        _cameraPosition.value = LatLng.from(latitude, longitude)
+        _zoomLevel.value = zoom
     }
 
-    // 카메라 위치 업데이트 함수
-    fun updateCameraPosition(latLng: LatLng) {
-        _cameraPosition.value = latLng
+    // 마지막 위치 가져오기
+    fun getLastLocation(): Triple<Double, Double, Int> {
+        val lat = _cameraPosition.value?.latitude ?: 37.402005
+        val lon = _cameraPosition.value?.longitude ?: 127.108621
+        val zoom = _zoomLevel.value ?: 15
+        return Triple(lat, lon, zoom)
     }
-
-    data class LocationData(
-        val latitude: Double,
-        val longitude: Double
-    )
 }
