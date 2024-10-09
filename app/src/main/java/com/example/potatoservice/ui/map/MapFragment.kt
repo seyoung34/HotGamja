@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.potatoservice.R
 import com.example.potatoservice.databinding.FragmentMapBinding
+import com.example.potatoservice.model.remote.MarkerData
 import com.google.android.gms.location.LocationServices
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
@@ -33,6 +34,7 @@ class MapFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initMap()
         binding.buttonCurrentLocation.setOnClickListener { moveToCurrentLocation() }
+
     }
 
     override fun onCreateView(
@@ -80,6 +82,20 @@ class MapFragment : Fragment() {
                         currentZoom
                     )
                 }
+
+                mapViewModel.setMarkerData()
+                mapViewModel.markerDataList.observe(viewLifecycleOwner) { markerDataList ->
+                    markerDataList?.let {
+                        mapViewModel.addMarkersToMap(kakaoMap)
+                    }
+                }
+
+                mapViewModel.selectedMarker.observe(viewLifecycleOwner) { markerData ->
+                    markerData?.let {
+                        updateCardView(it)
+                        showCardView()
+                    } ?: hideCardView()
+                }
             }
         })
     }
@@ -95,13 +111,38 @@ class MapFragment : Fragment() {
                 val curLat = it.latitude
                 val curLon = it.longitude
                 val latLng = LatLng.from(curLat, curLon)
-
                 val cameraUpdate = CameraUpdateFactory.newCenterPosition(latLng)
-                kakaoMap?.moveCamera(cameraUpdate) // 카메라를 현재 위치로 이동
-                Toast.makeText(requireContext(), "현재 위치로 이동합니다.", Toast.LENGTH_SHORT).show()
+                kakaoMap?.moveCamera(cameraUpdate)
             } ?: run {
                 Toast.makeText(requireContext(), "위치를 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
             }
         }
     }
+
+
+
+
+
+    // 카드뷰에 정보를 업데이트하는 함수
+    private fun updateCardView(markerData: MarkerData) {
+        binding.titleText.text = markerData.title
+        binding.descriptionText.text = "${markerData.address} \n${markerData.description}"
+    }
+
+    // CardView를 보이게 설정
+    private fun showCardView() {
+        binding.infoCardView.visibility = View.VISIBLE
+    }
+
+    // CardView를 숨김
+    private fun hideCardView() {
+        binding.infoCardView.visibility = View.GONE
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
 }
