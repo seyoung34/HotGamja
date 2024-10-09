@@ -70,7 +70,7 @@ class DetailActivity : AppCompatActivity() {
 	//테스트용 데이터
 	private fun getVolunteer(id: Int):Volunteer {
 		institution = "조직111111111111111111끝"
-		return Volunteer("봉사 활동 제목 12345678912345678911111111끝",
+		return Volunteer("테스터id","봉사 활동 제목 12345678912345678911111111끝",
 			"조직11111111111111111111111끝", "category111111111111111111끝",
 			"recruitmentPeriod",
 			"recruitmentNumber11111111111111111111111111끝", "time",
