@@ -40,3 +40,34 @@ data class Sort(
     val sorted: Boolean,
     val unsorted: Boolean
 )
+
+data class ActivityDetail(
+    val actId: Int,
+    val actTitle: String?,
+    val actLocation: String?,
+    val noticeStartDate: String?,
+    val noticeEndDate: String,
+    val actStartDate: String?,
+    val actEndDate: String,
+    val actStartTime: Int,
+    val actEndTime: Int,
+    val recruitTotalNum: Int,
+    val adultPossible: Boolean,
+    val teenPossible: Boolean,
+    val groupPossible: Boolean,
+    val actWeek: Int,
+    val actManager: String,
+    val actPhone: String,
+    val url: String,
+    val category: String,
+    val institute: Institute
+)
+
+data class Institute(
+    val instituteId:Int,
+    val name:String,
+    val location:String,
+    val latitude:Double,
+    val longitude:Double,
+    val phone:String
+)
