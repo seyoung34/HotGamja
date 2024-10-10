@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : Fragment(), AdapterCallback {
 
+
 	private lateinit var binding: FragmentHomeBinding
 	private lateinit var searchResultAdapter: SearchResultAdapter
 	private val homeViewModel: HomeViewModel by viewModels()
@@ -162,5 +163,6 @@ class HomeFragment : Fragment(), AdapterCallback {
 		intent.putExtra("id", id) // 데이터 추가
 		startActivity(intent)
 	}
+
 
 }
