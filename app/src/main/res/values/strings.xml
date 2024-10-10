@@ -24,4 +24,6 @@
     <string name="volunteer_address">봉사 활동 위치</string>
     <string name="call">전화로 문의하기</string>
     <string name="request">신청하기</string>
+    <string name="마감기간">마감 기간 : ~ %1$s</string>
+    <string name="활동날짜">활동 날짜 : %1$s ~ %2$s</string>
 </resources>

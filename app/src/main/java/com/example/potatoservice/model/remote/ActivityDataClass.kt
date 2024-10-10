@@ -21,6 +21,7 @@ data class ActivityResponse(
     val last: Boolean,
     val size: Int,
     val number: Int,
+    val sort: Sort,
     val numberOfElements: Int,
     val empty: Boolean
 )

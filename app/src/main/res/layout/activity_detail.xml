@@ -4,8 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="volunteer"
-            type="com.example.potatoservice.ui.share.Volunteer" />
+            name="activity"
+            type="com.example.potatoservice.model.remote.Activity" />
         <variable
             name="detail"
             type="com.example.potatoservice.ui.detail.DetailActivity" />
@@ -40,7 +40,7 @@
         <include
             android:id="@+id/volunteer_item"
             layout="@layout/service_item"
-            app:volunteer="@{volunteer}"
+            app:activity="@{activity}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -61,7 +61,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{volunteer.institution + ' ' + '리' + '뷰'}"
+                android:text="봉사 기관 리뷰"
                 android:textSize="20sp"
                 android:layout_margin="10dp"/>
 

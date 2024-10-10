@@ -13,12 +13,12 @@ import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.example.potatoservice.R
 import com.example.potatoservice.databinding.ActivityDetailBinding
+import com.example.potatoservice.model.remote.Activity
 import com.example.potatoservice.ui.share.Volunteer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
-import com.kakao.vectormap.KakaoMapSdk
 import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapAuthException
 import com.kakao.vectormap.MapLifeCycleCallback
@@ -50,7 +50,7 @@ class DetailActivity : AppCompatActivity() {
 		//인텐트로 id 받아옴
 		id = intent.getIntExtra("id", 0)
 		binding = DataBindingUtil.setContentView(this, R.layout.activity_detail)
-		binding.volunteer = getVolunteer(id)
+		binding.activity = getActivity(id)
 		binding.detail = this
 		setProgress()
 		//전화걸기 버튼
@@ -68,14 +68,10 @@ class DetailActivity : AppCompatActivity() {
 	}
 	//받아온 id로 봉사 활동 데이터 얻음
 	//테스트용 데이터
-	private fun getVolunteer(id: Int):Volunteer {
+	private fun getActivity(id: Int):Activity {
 		institution = "조직111111111111111111끝"
-		return Volunteer("봉사 활동 제목 12345678912345678911111111끝",
-			"조직11111111111111111111111끝", "category111111111111111111끝",
-			"recruitmentPeriod",
-			"recruitmentNumber11111111111111111111111111끝", "time",
-			"serviceRecognitionTime", "location", "확정"
-		)
+		return Activity(1, "봉사활동1","장소", "모집시작",
+			"모집 종료","시작날짜", "종료날짜", 2, 4,5,"카테고리")
 	}
 	//리뷰 표시
 	private fun setProgress(){

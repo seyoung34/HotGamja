@@ -9,39 +9,51 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.potatoservice.databinding.FragmentHomeBinding
 import com.example.potatoservice.ui.detail.DetailActivity
 import com.example.potatoservice.ui.share.AdapterCallback
+import com.example.potatoservice.ui.share.Request
 import com.example.potatoservice.ui.share.SpinnerHintAdapter
-import com.example.potatoservice.ui.share.Volunteer
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : Fragment(), AdapterCallback {
 
 	private lateinit var binding: FragmentHomeBinding
 	private lateinit var searchResultAdapter: SearchResultAdapter
-	private lateinit var homeViewModel: HomeViewModel
+	private val homeViewModel: HomeViewModel by viewModels()
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
+//		homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
 
 		binding = FragmentHomeBinding.inflate(inflater, container, false)
 		binding.viewModel = homeViewModel
 		setRecyclerAdapter()
-
 		setSpinner()
+		//검색 버튼 클릭 시
+		binding.searchButton.setOnClickListener {
+			val page = 0
+			val size:Int? = null
+			val sort:String? = null
+			val beforeDeadlineOnly:Boolean? = null
+			val teenPossibleOnly:Boolean? = null
+			val category:String? = null
+			val request = Request(page, size, sort, beforeDeadlineOnly, teenPossibleOnly, category)
+			homeViewModel.search(request)
+		}
 		return binding.root
 	}
 	//검색 결과 리사이클러뷰 설정
 	private fun setRecyclerAdapter(){
 		binding.searchResultRecyclerView.layoutManager = LinearLayoutManager(activity)
 		searchResultAdapter = SearchResultAdapter(this)
-		homeViewModel.serviceList.observe(viewLifecycleOwner, Observer { service ->
+		homeViewModel.activityList.observe(viewLifecycleOwner, Observer { service ->
 			searchResultAdapter.submitList(service)
 			binding.searchResultRecyclerView.adapter = searchResultAdapter
 		})
@@ -114,7 +126,9 @@ class HomeFragment : Fragment(), AdapterCallback {
 				position: Int,
 				id: Long
 			) {
+				if(position != 0){
 
+				}
 			}
 
 			override fun onNothingSelected(parent: AdapterView<*>?) {

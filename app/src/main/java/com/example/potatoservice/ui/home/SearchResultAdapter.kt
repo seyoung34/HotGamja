@@ -7,18 +7,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.potatoservice.databinding.ServiceItemBinding
+import com.example.potatoservice.model.remote.Activity
 import com.example.potatoservice.ui.share.AdapterCallback
 import com.example.potatoservice.ui.share.Volunteer
 
 class SearchResultAdapter(
 	private val callback: AdapterCallback
-): ListAdapter<Volunteer, SearchResultAdapter.ViewHolder>(
-	object : DiffUtil.ItemCallback<Volunteer>(){
-		override fun areItemsTheSame(oldItem: Volunteer, newItem: Volunteer): Boolean {
+): ListAdapter<Activity, SearchResultAdapter.ViewHolder>(
+	object : DiffUtil.ItemCallback<Activity>(){
+		override fun areItemsTheSame(oldItem: Activity, newItem: Activity): Boolean {
 			return oldItem === newItem
 		}
 
-		override fun areContentsTheSame(oldItem: Volunteer, newItem: Volunteer): Boolean {
+		override fun areContentsTheSame(oldItem: Activity, newItem: Activity): Boolean {
 			return oldItem == newItem
 		}
 	}
@@ -43,7 +44,7 @@ class SearchResultAdapter(
 	}
 
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-		val volunteer: Volunteer = getItem(position)
-		binding.volunteer = volunteer
+		val activity: Activity = getItem(position)
+		binding.activity = activity
 	}
 }
