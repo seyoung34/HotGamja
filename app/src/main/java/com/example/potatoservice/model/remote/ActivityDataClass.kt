@@ -45,6 +45,7 @@ data class ActivityDetail(
     val actId: Int,
     val actTitle: String?,
     val actLocation: String?,
+    val description: String?,
     val noticeStartDate: String?,
     val noticeEndDate: String,
     val actStartDate: String?,
