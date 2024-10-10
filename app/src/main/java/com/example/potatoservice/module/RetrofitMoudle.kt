@@ -12,7 +12,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
-	private const val BASE_URL = "https://e941a67f-eab3-400d-84ab-4dd8bc0bbebb.mock.pstmn.io/"
+	//개인 포스트맨 url
+	private const val BASE_URL = "https://2840add0-e0da-40cd-9510-11698521f909.mock.pstmn.io"
 	@Provides
 	@Singleton
 	fun provideRetrofitService(retrofit: Retrofit): APIService {
