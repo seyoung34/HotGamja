@@ -67,7 +67,7 @@ data class Institute(
     val instituteId:Int,
     val name:String,
     val location:String,
-    val latitude:Double,
-    val longitude:Double,
+    val latitude:Double?,
+    val longitude:Double?,
     val phone:String
 )
