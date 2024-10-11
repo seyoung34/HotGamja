@@ -4,11 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="activity"
-            type="com.example.potatoservice.model.remote.Activity" />
-        <variable
             name="detail"
-            type="com.example.potatoservice.ui.detail.DetailActivity" />
+            type="com.example.potatoservice.model.remote.ActivityDetail" />
+        <variable
+            name="institute"
+            type="com.example.potatoservice.model.remote.Institute" />
+        <variable
+            name="viewmodel"
+            type="com.example.potatoservice.ui.detail.DetailViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -38,9 +41,10 @@
             android:padding="10dp"/>
 
         <include
-            android:id="@+id/volunteer_item"
-            layout="@layout/service_item"
-            app:activity="@{activity}"
+            android:id="@+id/activity_detail_item"
+            layout="@layout/activity_detail_item"
+            app:detail="@{detail}"
+            app:viewmodel = "@{viewmodel}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,12 +60,12 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/volunteer_item">
+            app:layout_constraintTop_toBottomOf="@+id/activity_detail_item">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="봉사 기관 리뷰"
+                android:text="@{@string/기관리뷰(institute.name)}"
                 android:textSize="20sp"
                 android:layout_margin="10dp"/>
 
@@ -88,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
-                    android:text="@{detail.review1 + '%'}" />
+                    android:text="@{viewmodel.review1 + '%'}" />
             </LinearLayout>
 
             <TextView
@@ -114,7 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
-                    android:text="@{detail.review2 + '%'}" />
+                    android:text="@{viewmodel.review2 + '%'}" />
             </LinearLayout>
 
             <TextView
@@ -140,7 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingStart="10dp"
-                    android:text="@{detail.review3 + '%'}" />
+                    android:text="@{viewmodel.review3 + '%'}" />
             </LinearLayout>
         </LinearLayout>
 

@@ -1,6 +1,7 @@
 package com.example.potatoservice.module
 
 import com.example.potatoservice.model.APIService
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,9 +24,10 @@ object RetrofitModule {
 	@Provides
 	@Singleton
 	fun provideRetrofit(): Retrofit {
+		val gson = GsonBuilder().setLenient().create() // Gson Lenient 모드 활성화
 		return Retrofit.Builder()
 			.baseUrl(BASE_URL)
-			.addConverterFactory(GsonConverterFactory.create())
+			.addConverterFactory(GsonConverterFactory.create(gson))
 			.build()
 	}
 }

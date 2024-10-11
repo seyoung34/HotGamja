@@ -39,7 +39,7 @@ interface APIService {
     ): Call<ActivityResponse>
 
     @GET("/api/v1/activities/{activity_id}")
-    suspend fun getActivityDetail(
+    fun getActivityDetail(
         @Path("activity_id") activityId: Int
     ): Call<ActivityDetail>
 }

@@ -31,8 +31,6 @@ class HomeFragment : Fragment(), AdapterCallback {
 		container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-//		homeViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
-
 		binding = FragmentHomeBinding.inflate(inflater, container, false)
 		binding.viewModel = homeViewModel
 		setRecyclerAdapter()
@@ -158,7 +156,6 @@ class HomeFragment : Fragment(), AdapterCallback {
 	}
 
 	override fun onClicked(id: Int) {
-		//봉사 카드 클릭 시 상세 페이지로 이동 기능 추가 예정.
 		val intent = Intent(requireContext(), DetailActivity::class.java)
 		intent.putExtra("id", id) // 데이터 추가
 		startActivity(intent)

@@ -3,8 +3,13 @@ package com.example.potatoservice.ui.home
 import android.util.Log
 import com.example.potatoservice.model.APIService
 import com.example.potatoservice.model.remote.Activity
+import com.example.potatoservice.model.remote.ActivityDetail
 import com.example.potatoservice.model.remote.ActivityResponse
+import com.example.potatoservice.model.remote.Institute
 import com.example.potatoservice.ui.share.Request
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -47,13 +52,11 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService){
 						}?: emptyList()
 						callback.onLoaded(activityList)
 					} else{
-						Log.d("testt", "onResponse")
 						callback.onFailed()
 					}
 				}
 
 				override fun onFailure(call: Call<ActivityResponse>, t: Throwable) {
-					Log.d("testt", "onFailure")
 					callback.onFailed()
 				}
 
@@ -72,5 +75,92 @@ class RemoteDataSource @Inject constructor(private val apiService: APIService){
 			"OTHER_ACTIVITIES" -> "기타 활동"
 			else -> "봉사 활동 분류 오류"
 		}
+	}
+
+	val nullActivityDetail = ActivityDetail(
+		0,
+		"봉사 활동 제목 정보 없음",
+		"봉사 활동 장소 정보 없음",
+		"봉사 활동 설명 정보 없음",
+		"공지 시작 날짜 정보 없음",
+		"공지 종료 날짜 정보 없음",
+		"봉사 활동 시작 날짜 정보 없음",
+		"봉사 활동 종료 날짜 정보 없음",
+		0,
+		0,
+		0,
+		false,
+		false,
+		false,
+		0,
+		"봉사 활동 담당자 정보 없음",
+		"봉사 활동 전화 번호 정보 없음",
+		"봉사 활동 url 정보 없음",
+		"카테고리 정보 없음",
+		Institute(
+			0,
+			"기관 정보 없음",
+			"기관 주소 정보 없음",
+			0.0,
+			0.0,
+			"기관 전화 번호 정보 없음"
+		)
+	)
+
+	interface DetailCallback{
+		fun onLoaded(activityDetail: ActivityDetail)
+		fun onFailed()
+	}
+
+	fun lookDetail(id: Int, callback: DetailCallback){
+		apiService.getActivityDetail(id).enqueue(
+			object : Callback<ActivityDetail>{
+				override fun onResponse(
+					call: Call<ActivityDetail>,
+					response: Response<ActivityDetail>
+				) {
+					if (response.isSuccessful){
+						val body = response.body()
+						val activityDetail = body?.let {detail ->
+							Log.d("testt", "${detail.actTitle}")
+							ActivityDetail(
+								detail.actId,
+								detail.actTitle,
+								detail.actLocation,
+								detail.description,
+								detail.noticeStartDate,
+								detail.noticeEndDate,
+								detail.actStartDate,
+								detail.actEndDate,
+								detail.actStartTime,
+								detail.actEndTime,
+								detail.recruitTotalNum,
+								detail.adultPossible,
+								detail.teenPossible,
+								detail.groupPossible,
+								detail.actWeek,
+								detail.actManager,
+								detail.actPhone,
+								detail.url,
+								detail.category,
+								detail.institute
+							)
+						}?: nullActivityDetail
+						callback.onLoaded(activityDetail)
+
+					} else{
+						Log.d("testt", "detail onResponse fail")
+						callback.onFailed()
+					}
+				}
+
+				override fun onFailure(call: Call<ActivityDetail>, t: Throwable) {
+					Log.d("testt", "detail fail : $t")
+					callback.onFailed()
+				}
+
+			}
+		)
+
 	}
 }

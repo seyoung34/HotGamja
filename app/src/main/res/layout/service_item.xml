@@ -47,14 +47,14 @@
                 android:textColor="#424242"
                 />
             <TextView
-                android:id="@+id/service_recruitment"
+                android:id="@+id/service_notice_date"
                 android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:textColor="#424242"
                 android:text="@{@string/마감기간(activity.noticeEndDate)}"
                 />
             <TextView
-                android:id="@+id/service_time"
+                android:id="@+id/service_act_date"
                 android:layout_width="245dp"
                 android:layout_height="wrap_content"
                 android:text="@{@string/활동날짜(activity.actStartDate, activity.actEndDate)}"

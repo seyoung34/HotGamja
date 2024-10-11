@@ -1,5 +1,6 @@
 package com.example.potatoservice.ui.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,12 +30,6 @@ class SearchResultAdapter(
 		itemView: View
 	) : RecyclerView.ViewHolder(itemView) {
 
-		init {
-			itemView.setOnClickListener {
-				//차후 아이디로 변경해야 함.
-				callback.onClicked(adapterPosition)
-			}
-		}
 	}
 
 	override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,5 +41,9 @@ class SearchResultAdapter(
 	override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 		val activity: Activity = getItem(position)
 		binding.activity = activity
+		holder.itemView.setOnClickListener {
+			Log.d("testt", "adapter click ${activity.actId}")
+			callback.onClicked(activity.actId)
+		}
 	}
 }
