@@ -18,25 +18,23 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
     private lateinit var binding: FragmentMypageBinding
     private lateinit var myPageViewModel: MyPageViewModel
     private lateinit var customDialog : CustomDialogFragment
+    private lateinit var dialogArray : Array<DialogModel>
 
     var dialogShowCount = 0
     var positiveCount = 0
     var negativeCount = 0
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        // ViewModel과 ViewBinding 초기화
         myPageViewModel = ViewModelProvider(this).get(MyPageViewModel::class.java)
         binding = FragmentMypageBinding.inflate(inflater, container, false)
-
-        val spinnerItems = arrayOf("전체보기", "신청완료", "확정 대기", "수행완료됨")
-//        // 커스텀 ArrayAdapter 생성
-        val adapter = ArrayAdapter(requireContext(), R.layout.item_spinner, spinnerItems)
-        adapter.setDropDownViewResource(R.layout.item_spinner_dropdown)
-        binding.myPageSpinner.adapter = adapter
+        binding.myPageSpinner.adapter = myPageViewModel.vmAdapter
+        dialogArray = myPageViewModel.vmDialogArray
 
         return binding.root
     }
@@ -66,6 +64,7 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
     private fun setupRecyclerView() {
 
         // 예시 데이터 리스트 생성
+        //todo mvvm패턴 변경하기
         val volunteers = listOf(
             Volunteer("테스트id","봉사활동 1", "기관 A", "교육", "2024.09.01 ~ 2024.09.30", "0/5", "2024.10.01 ~ 2024.10.31", "132시간", "서울특별시", "확정 대기 중"),
             Volunteer("테스트id","봉사활동 2", "기관 B", "환경", "2024.08.01 ~ 2024.08.30", "3/10", "2024.09.01 ~ 2024.09.15", "32시간", "부산광역시", "신청 완료됨"),
@@ -100,9 +99,7 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
 
         if(dialogShowCount<5){
             customDialog = CustomDialogFragment.newInstance(
-                "제목${dialogShowCount}",
-                R.drawable.potato_lv1,
-                "내용${dialogShowCount}"
+                dialogArray[dialogShowCount]
             )
             customDialog.setDialogListener(this@MyPageFragment)
             customDialog.show(parentFragmentManager,"customDialog")
