@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.potatoservice.R
@@ -25,13 +26,14 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
     var negativeCount = 0
 
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        myPageViewModel = ViewModelProvider(this).get(MyPageViewModel::class.java)
+        val myPageModel = MyPageModel(requireContext())
+        val factory = MyPageViewModelFactory(requireContext(), myPageModel)
+        myPageViewModel = ViewModelProvider(this, factory).get(MyPageViewModel::class.java)
         binding = FragmentMypageBinding.inflate(inflater, container, false)
         binding.myPageSpinner.adapter = myPageViewModel.vmAdapter
         dialogArray = myPageViewModel.vmDialogArray
@@ -42,11 +44,16 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // ProgressBar 설정
-        setupProgressBar()
+        myPageViewModel.setVoulunteerHours()
+        setUpInit()
 
-        // RecyclerView 설정
+    }
+
+    private fun setUpInit(){
+        setupProgressBar()
         setupRecyclerView()
+        setupTvLevel()
+        setupTvTotalHours()
     }
 
     // ProgressBar 설정 함수
@@ -55,10 +62,22 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
         myPageViewModel.progress.observe(viewLifecycleOwner) { progress ->
             binding.progressBar.progress = progress
         }
-
-        // 초기 봉사 시간을 설정 (예: 190시간)
-        myPageViewModel.setVolunteerHours(190)
     }
+
+    private fun setupTvTotalHours(){
+        myPageViewModel.vmVolunteerHours.observe(viewLifecycleOwner, Observer {
+            binding.tvTotalHours.text = "총 봉사 시간 : ${it}"
+        })
+    }
+
+    // Lv 설정 함수
+    private fun setupTvLevel(){
+        myPageViewModel.vmLevel.observe(viewLifecycleOwner, Observer {
+            binding.tvLevel.text = "Lv. ${it}"
+        })
+    }
+
+
 
     // RecyclerView 설정 함수
     private fun setupRecyclerView() {
@@ -72,7 +91,6 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
             Volunteer("테스트id","봉사활동 4", "기관 B", "환경", "2024.08.01 ~ 2024.08.30", "3/10", "2024.09.01 ~ 2024.09.15", "32시간", "부산광역시", "신청 완료됨")
             // 더 많은 데이터 추가 가능
         )
-
 
         // 어댑터 설정
         val adapter = VolunteerAdapter(volunteers,this)

@@ -1,6 +1,8 @@
 package com.example.potatoservice.ui.mypage
 
 import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.potatoservice.R
 
 class MyPageModel(context : Context) {
@@ -47,4 +49,15 @@ class MyPageModel(context : Context) {
 
     //mypage 보기방식 spinner item
     val spinnerItems : Array<String> = arrayOf("전체보기", "신청완료", "확정 대기", "수행완료됨")
+
+    //봉사 시간 데이터
+    val volunteerHousr = MutableLiveData<Int>()
+
+    fun setVolunteerHours(){
+        volunteerHousr.value = 127
+    }
+
+
+    //개인 봉사내역 데이터
+
 }
