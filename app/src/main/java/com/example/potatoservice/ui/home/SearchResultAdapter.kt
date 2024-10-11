@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.potatoservice.databinding.ServiceItemBinding
 import com.example.potatoservice.model.remote.Activity
 import com.example.potatoservice.ui.share.AdapterCallback
-import com.example.potatoservice.ui.share.Volunteer
 
 class SearchResultAdapter(
 	private val callback: AdapterCallback

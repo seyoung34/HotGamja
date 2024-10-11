@@ -7,9 +7,6 @@ import com.example.potatoservice.model.remote.ActivityDetail
 import com.example.potatoservice.model.remote.ActivityResponse
 import com.example.potatoservice.model.remote.Institute
 import com.example.potatoservice.ui.share.Request
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
