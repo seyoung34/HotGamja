@@ -145,6 +145,7 @@ class MapViewModel : ViewModel() {
                 val result = deferred.await()
                 result?.let { addMarkerData(result) }
             }
+            Log.d("seyoung","fetchCoordinatesList() 완료")
         }
     }
 

@@ -22,9 +22,21 @@ class VolunteerAdapter(
             binding.tvActivityPeriod.text = volunteer.activityPeriod
             binding.tvVolunteerHours.text = volunteer.volunteerHours
             binding.tvVolunteerAddress.text = volunteer.address
-            binding.tvVolunteerStatus.text = volunteer.status
+            binding.tvVolunteerStatus.text = volunteer.status.let{
+                when(it){
+                    "APPLIED" -> "모집중"
+                    "WAITING" -> "활동대기"
+                    "ACT" -> "활동"
+                    "FINISHED" -> "활동완료"
+                    "REVIEWED" -> "리뷰완료"
+                    else -> "기본"
+                }
+            }
             binding.btnAction.setOnClickListener {
-                listener.onVolunteerClick(volunteer)
+                if(volunteer.status == "FINISHED"){
+                    listener.onVolunteerClick(volunteer)
+                }
+
             }
         }
     }
