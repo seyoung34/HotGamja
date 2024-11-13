@@ -1,5 +1,8 @@
 package com.example.potatoservice.model.remote
 
+import com.example.potatoservice.ui.share.SpinnerList.kangwonUnivLatitude
+import com.example.potatoservice.ui.share.SpinnerList.kangwonUnivLongitude
+
 data class Activity(
     val actId: Int,
     val actTitle: String?,
@@ -81,8 +84,8 @@ data class ActivityDetail(
             false,
             false,
             false,
-            37.870448,
-            127.746190,
+            kangwonUnivLatitude,
+            kangwonUnivLongitude,
             0,
             "봉사 활동 담당자 정보 없음",
             "봉사 활동 전화 번호 정보 없음",
@@ -93,8 +96,8 @@ data class ActivityDetail(
                 "기관 정보 없음",
                 "기관 주소 정보 없음",
                 //강원대 위치
-                37.870448,
-                127.746190,
+                kangwonUnivLatitude,
+                kangwonUnivLongitude,
                 "기관 전화 번호 정보 없음",
                 listOf(
                     Score(
