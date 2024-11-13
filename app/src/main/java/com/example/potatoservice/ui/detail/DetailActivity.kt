@@ -7,6 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 
 import android.view.View
@@ -108,8 +109,8 @@ class DetailActivity : AppCompatActivity() {
 	//지도 페이지로 이동
 	private fun mapSizeUp(){
 		val bundle = Bundle()
-		institute!!.latitude?.let { bundle.putDouble("latitude", it) }
-		institute!!.longitude?.let { bundle.putDouble("longitude", it) }
+		detail!!.latitude?.let { bundle.putDouble("latitude", it) }
+		detail!!.longitude?.let { bundle.putDouble("longitude", it) }
 		bundle.putString("name", institute!!.name)
 		val fragment = MapFragment()
 		fragment.arguments = bundle
@@ -130,8 +131,8 @@ class DetailActivity : AppCompatActivity() {
 			viewModel.setAgePossible()
 			viewModel.setGroupPossible()
 			binding.invalidateAll()
+			Log.d("testt", "위도 ${activityDetail?.latitude} 경도 ${activityDetail?.longitude} 기관 위도 ${activityDetail?.institute?.latitude} 기관 경도 ${activityDetail?.institute?.longitude}")
 		})
-
 	}
 	//리뷰 표시
 	private fun setRatingBar(){
@@ -155,12 +156,6 @@ class DetailActivity : AppCompatActivity() {
 		mapView = binding.detailMapView
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-//		mapView.setOnTouchListener { v, event ->
-//			v.parent.requestDisallowInterceptTouchEvent(true)
-//			Log.d("seyoung","setOnTouchListener")
-//			false
-//		}
-
 		mapView.start(object : MapLifeCycleCallback() {
 			override fun onMapDestroy() {
 			}
@@ -178,8 +173,8 @@ class DetailActivity : AppCompatActivity() {
 				this@DetailActivity.kakaoMap = kakaoMap
 				//기관 위치 지도에서 마커로 표시하고 카메라 이동.
 				viewModel.loading.observe(this@DetailActivity, Observer {
-					if (institute?.latitude != null && institute?.longitude != null){
-						val latLng = LatLng.from(institute?.latitude!!, institute?.longitude!!)
+					if (detail?.latitude != null && detail?.longitude != null){
+						val latLng = LatLng.from(detail?.latitude!!, detail?.longitude!!)
 						setInitialCameraPosition(latLng)
 						setMarker(latLng)
 					}
