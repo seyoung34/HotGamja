@@ -56,6 +56,8 @@ class HomeViewModel @Inject constructor(
             }
             gunguCodeMap[sidoCode]?.add(listOf(gunguName!!, gunguCode))
         }
+        //세종시 추가
+        gunguCodeMap[5690000] = mutableListOf(listOf("지역 소분류", 0))
         return gunguCodeMap
     }
 
