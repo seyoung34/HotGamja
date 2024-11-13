@@ -115,12 +115,15 @@ class HomeFragment : Fragment(), AdapterCallback {
     //검색 로딩 화면 설정
     private fun showSearchLoading() {
         homeViewModel.searchLoading.observe(viewLifecycleOwner, Observer { loading ->
+            Log.d("testt", "loading: $loading")
             if (loading) {
                 binding.searchResultRecyclerView.visibility = View.GONE
                 binding.loadingShimmer.visibility = View.VISIBLE
                 binding.loadingShimmer.startShimmer()
             } else {
-                binding.loadingShimmer.stopShimmer()
+                if (binding.loadingShimmer.isShimmerStarted){
+                    binding.loadingShimmer.stopShimmer()
+                }
                 binding.loadingShimmer.visibility = View.GONE
                 binding.searchResultRecyclerView.visibility = View.VISIBLE
             }
@@ -259,6 +262,7 @@ class HomeFragment : Fragment(), AdapterCallback {
                         var majorSidoCode: Int? = 0
                         if (position != 0){
                             sidoCode = majorSidoCodeList[position]
+                            Log.d("testt", "sidoCode: $sidoCode")
                             majorSidoCode = sidoCode
                         }else{
                             sidoCode = null
@@ -314,6 +318,7 @@ class HomeFragment : Fragment(), AdapterCallback {
                     }else{
                         null
                     }
+                    Log.d("testt", "gunguCode: $gunguCode")
                     //스피너 값 뷰모델에 저장
                     mainViewModel.spinnerMinorValue = position
                 }
