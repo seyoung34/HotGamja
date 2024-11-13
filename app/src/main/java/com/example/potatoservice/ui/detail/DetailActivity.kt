@@ -8,7 +8,6 @@ import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
-import android.view.MotionEvent
 
 import android.view.View
 import android.widget.Toast
@@ -21,6 +20,7 @@ import com.example.potatoservice.R
 import com.example.potatoservice.databinding.ActivityDetailBinding
 import com.example.potatoservice.model.remote.ActivityDetail
 import com.example.potatoservice.model.remote.Institute
+import com.example.potatoservice.model.remote.Score
 import com.example.potatoservice.ui.map.MapFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -63,7 +63,6 @@ class DetailActivity : AppCompatActivity() {
 
 		binding.viewmodel = viewModel
 		getActivity(id)
-		setRatingBar()
 
 		//전화걸기 버튼
 		binding.callButton.setOnClickListener {
@@ -130,12 +129,31 @@ class DetailActivity : AppCompatActivity() {
 			detail = activityDetail
 			viewModel.setAgePossible()
 			viewModel.setGroupPossible()
+			setReview(institute?.scores)
+			setRatingBar(institute?.scores)
 			binding.invalidateAll()
-			Log.d("testt", "위도 ${activityDetail?.latitude} 경도 ${activityDetail?.longitude} 기관 위도 ${activityDetail?.institute?.latitude} 기관 경도 ${activityDetail?.institute?.longitude}")
 		})
 	}
 	//리뷰 표시
-	private fun setRatingBar(){
+	private fun setReview(scores: List<Score>?){
+		if (scores != null) {
+			viewModel.review1Question = scores[0].question.content
+			viewModel.review2Question = scores[1].question.content
+			viewModel.review3Question = scores[2].question.content
+		}
+		else{
+			viewModel.review1Question = "질문 정보가 없습니다."
+			viewModel.review2Question = "질문 정보가 없습니다."
+			viewModel.review3Question = "질문 정보가 없습니다."
+		}
+	}
+	//리뷰 평점 설정
+	private fun setRatingBar(scores: List<Score>?) {
+		if (scores != null) {
+			viewModel.review1 = scores[0].score
+			viewModel.review2 = scores[1].score
+			viewModel.review3 = scores[2].score
+		}
 		binding.ratingBar1.setRating(viewModel.review1.toFloat())
 		binding.ratingBar2.setRating(viewModel.review2.toFloat())
 		binding.ratingBar3.setRating(viewModel.review3.toFloat())

@@ -95,8 +95,16 @@ data class ActivityDetail(
                 //강원대 위치
                 37.870448,
                 127.746190,
-
-                "기관 전화 번호 정보 없음"
+                "기관 전화 번호 정보 없음",
+                listOf(
+                    Score(
+                        Question(
+                            0,
+                            "질문 정보 없음"
+                        ),
+                        -1.0
+                    )
+                )
             )
         )
         val nullActivity = Activity(
@@ -114,14 +122,25 @@ data class ActivityDetail(
         )
     }
 }
-
+//기관 정보
 data class Institute(
     val instituteId:Int,
     val name:String,
     val location:String,
     val latitude:Double?,
     val longitude:Double?,
-    val phone:String
+    val phone:String,
+    val scores:List<Score>?
+)
+//기관 리뷰 정보
+data class Score(
+    val question:Question,
+    val score:Double
+)
+//리뷰 질문 정보
+data class Question(
+    val questionId:Int,
+    val content:String
 )
 
 //시도군구 데이터 클래스
