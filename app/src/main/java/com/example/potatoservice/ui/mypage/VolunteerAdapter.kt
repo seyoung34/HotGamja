@@ -14,6 +14,7 @@ class VolunteerAdapter(
     inner class VolunteerViewHolder(val binding: ItemVolunteerBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(volunteer: Volunteer) {
+            val itemId = volunteer.id
             binding.tvVolunteerTitle.text = volunteer.title
             binding.tvInstitutionName.text = volunteer.institution
             binding.tvVolunteerCategory.text = volunteer.Category
@@ -34,7 +35,11 @@ class VolunteerAdapter(
             }
             binding.btnAction.setOnClickListener {
                 if(volunteer.status == "FINISHED"){
-                    listener.onVolunteerClick(volunteer)
+                    listener.checkReview(volunteer)
+                }
+                else{
+                    //todo 디테일로 이동하기?
+//                    listener.onVolunteerClick(volunteer)
                 }
 
             }

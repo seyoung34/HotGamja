@@ -1,12 +1,14 @@
 package com.example.potatoservice.ui.mypage
 
 import android.content.Context
+import android.content.Intent
 import android.widget.ArrayAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.potatoservice.R
 import com.example.potatoservice.model.remote.AvatarInfo
+import com.example.potatoservice.ui.detail.DetailActivity
 import com.example.potatoservice.ui.share.Volunteer
 
 class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerClickListener {
@@ -121,9 +123,14 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
     }
 
 
-    override fun onVolunteerClick(volunteer: Volunteer) {
+    override fun checkReview(volunteer: Volunteer) {
         MyPageModel.getReviewQuestions()
     }
 
-
+//    override fun onVolunteerClick(volunteer: Volunteer) {
+//        //todo 디테일로 인텐트하기
+//        val intent = Intent(requireContext(), DetailActivity::class.java)
+//        intent.putExtra("id", id) // 데이터 추가
+//        startActivity(intent)
+//    }
 }

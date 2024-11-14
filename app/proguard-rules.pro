@@ -19,3 +19,43 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Kakao SDK
+-keep class com.kakao.** { *; }
+-keep class com.kakao.sdk.** { *; }
+-dontwarn com.kakao.**
+-dontwarn com.kakao.sdk.**
+
+# Hilt
+-keep class dagger.hilt.internal.** { *; }
+-keep class dagger.hilt.android.internal.lifecycle.** { *; }
+-keep class androidx.hilt.** { *; }
+-dontwarn dagger.hilt.**
+-dontwarn dagger.hilt.android.**
+-dontwarn androidx.hilt.**
+-keepattributes RuntimeVisibleAnnotations
+-keep class * extends dagger.hilt.internal.GeneratedComponent
+
+# Google Play Services
+-keep class com.google.android.gms.** { *; }
+-dontwarn com.google.android.gms.**
+
+# Facebook Shimmer
+-keep class com.facebook.shimmer.** { *; }
+-dontwarn com.facebook.shimmer.**
+
+# AndroidX 및 Jetpack
+-keep public class androidx.** { *; }
+-dontwarn androidx.**
+
+# Suppress warnings for missing classes during R8 minification
+-dontwarn org.bouncycastle.jsse.BCSSLParameters
+-dontwarn org.bouncycastle.jsse.BCSSLSocket
+-dontwarn org.bouncycastle.jsse.provider.BouncyCastleJsseProvider
+-dontwarn org.conscrypt.Conscrypt$Version
+-dontwarn org.conscrypt.Conscrypt
+-dontwarn org.conscrypt.ConscryptHostnameVerifier
+-dontwarn org.openjsse.javax.net.ssl.SSLParameters
+-dontwarn org.openjsse.javax.net.ssl.SSLSocket
+-dontwarn org.openjsse.net.ssl.OpenJSSE
+

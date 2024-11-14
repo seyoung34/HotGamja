@@ -131,7 +131,7 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
         }
     }
 
-    override fun onVolunteerClick(volunteer: Volunteer) {
+    override fun checkReview(volunteer: Volunteer) {
         MyPageModel.getReviewQuestions()
     }
 
