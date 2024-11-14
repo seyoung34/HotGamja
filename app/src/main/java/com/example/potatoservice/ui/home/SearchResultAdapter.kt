@@ -141,7 +141,7 @@ class SearchResultAdapter(
 					previousPosition = lastVisibleItemPosition
 				}
 				val positionGap = abs(previousPosition!! - lastVisibleItemPosition)
-				Log.d("testt", "$previousPosition - $lastVisibleItemPosition = $positionGap")
+
 				//포지션 갭이 1보다 큰 경우 오류 현상임.
 				if (positionGap>1){
 					layoutManager.scrollToPosition(0)

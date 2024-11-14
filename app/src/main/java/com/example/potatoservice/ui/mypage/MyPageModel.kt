@@ -23,6 +23,7 @@ object MyPageModel {
     val volunteerHours = MutableLiveData<Int>()
     val volunteerCount = MutableLiveData<Int>()
     val ninkname = MutableLiveData<String>()
+    val level = MutableLiveData<Int>()
 
     //리사이클러뷰 count
     val recyclerViewCount = MutableLiveData<Int>()
@@ -107,6 +108,7 @@ object MyPageModel {
     fun setMyPageModel(userInfo: AvatarInfo?){
         volunteerHours.value = userInfo?.avatarExp
         ninkname.value = userInfo?.nickName
+        level.value = userInfo?.avatarLevel
     }
 
 

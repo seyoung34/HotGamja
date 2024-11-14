@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.potatoservice.MainViewModel
+import com.example.potatoservice.R
 import com.example.potatoservice.databinding.FragmentMypageBinding
 import com.example.potatoservice.ui.share.Volunteer
 
@@ -56,6 +57,8 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
         setupTvTotalCount()
         setupRecyclerViewCount()
         setupNickname()
+        setupLvimage()
+        setuplvtitle()
     }
 
     //nickname 설정 함수
@@ -97,6 +100,38 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
     private fun setupTvLevel(){
         myPageViewModel.vmLevel.observe(viewLifecycleOwner, Observer {
             binding.tvLevel.text = "Lv. ${it}"
+        })
+    }
+
+    private fun setupLvimage(){
+        myPageViewModel.vmLevel.observe(viewLifecycleOwner, Observer {
+            if(it<10){
+                binding.lvImage.setImageResource(R.drawable.potato_lv1)
+            }
+            else{
+                when(it/10){
+                    1 -> binding.lvImage.setImageResource(R.drawable.potato_lv10)
+                    2 -> binding.lvImage.setImageResource(R.drawable.potato_lv20)
+                    3 -> binding.lvImage.setImageResource(R.drawable.potato_lv30)
+                    4 -> binding.lvImage.setImageResource(R.drawable.potato_lv40)
+                    5 -> binding.lvImage.setImageResource(R.drawable.potato_lv50)
+                }
+            }
+        })
+    }
+
+    private fun setuplvtitle(){
+        myPageViewModel.vmLevel.observe(viewLifecycleOwner, Observer {
+            if(it<10){
+                binding.lvTitle.text = "감자 새싹"
+            }
+          when(it/10){
+              1 -> binding.lvTitle.text = "알 감자"
+              2 -> binding.lvTitle.text = "감자 바구니"
+              3 -> binding.lvTitle.text = "감자 박스"
+              4 -> binding.lvTitle.text = "감자 컨테이너"
+              5 -> binding.lvTitle.text = "감자 화물선"
+          }
         })
     }
 

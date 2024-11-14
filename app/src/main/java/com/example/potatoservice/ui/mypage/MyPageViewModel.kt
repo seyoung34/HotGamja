@@ -91,6 +91,11 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
             _vmNickname.value = it
         }
 
+        //레벨
+        MyPageModel.level.observeForever {
+            _vmLevel.value = it
+        }
+
         //봉사내역 리사이클러뷰 설정,업데이트
         MyPageModel.volunteerHistoryList.observeForever {
             _vmRecyclerViewCount.value = it.size
@@ -113,7 +118,7 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
         val level = hours / 10
         val progressValue = (hours % 10) * 10
 
-        _vmLevel.value = level
+//        _vmLevel.value = level
         _progress.value = progressValue
         _progressPercent.value = progressValue
     }

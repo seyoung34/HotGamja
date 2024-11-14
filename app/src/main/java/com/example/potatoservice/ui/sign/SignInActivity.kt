@@ -76,8 +76,6 @@ class SignInActivity : AppCompatActivity() {
                         Log.d("testt", "response.isSuccessful")
                         Log.d("testt", "response.headers : ${response.headers()}")
                         Log.d("testt", "response.body : ${response.body()}")
-
-
                         val jwtToken = response.headers()["token"]
                         val avatarInfo = response.body()?.avatar
                         Log.d("testt", "JWT Token: $jwtToken")

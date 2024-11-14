@@ -35,6 +35,7 @@ class VolunteerAdapter(
             }
             binding.btnAction.setOnClickListener {
                 if(volunteer.status == "FINISHED"){
+
                     listener.checkReview(volunteer)
                 }
                 else{
@@ -63,5 +64,8 @@ class VolunteerAdapter(
         volunteerList = newList
         notifyDataSetChanged()
     }
+
+
+
 }
 
