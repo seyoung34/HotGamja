@@ -52,6 +52,14 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
 
     val vmReviewDialog = MutableLiveData<List<DialogModel>>()
 
+    //jwt토큰과, 유저정보
+    private val sharedPref = context.getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
+    private val _jwtToken = MutableLiveData<String>()
+//    val jwtToken: LiveData<String> get() = _jwtToken
+
+    private val _userInfo = MutableLiveData<AvatarInfo>() // userInfo를 JSON 문자열로 가정
+//    val userInfo: LiveData<AvatarInfo> get() = _userInfo
+
 
 
     //초기 설정
@@ -92,6 +100,8 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
             vmReviewDialog.value = it
         }
 
+        _jwtToken.value = sharedPref.getString("jwt_token", null)
+
     }
 
 
@@ -106,25 +116,14 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
         _progressPercent.value = progressValue
     }
 
-    override fun onVolunteerClick(volunteer: Volunteer) {
-        MyPageModel.getReviewQuestions()
+    fun onRefreshClick(){
+        MyPageModel.getMyPageList(_jwtToken.value.toString())
     }
 
 
-
-//=======
-
-    /* 김동한
-    * SignIn 로그인 Activity 에서 로그인을 하면, SharedPreferences에 jwtToken과 userInfo 객체를 담습니다.
-    * 이제 SharedPreferences에서 꺼내서 userInfo(아바타) 에는 현재 <닉네임, 나이대, 경험(횟수), 레벨(경험치?)> 이 담겨져 있습니다.
-     */
-
-    private val sharedPref = context.getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
-    private val _jwtToken = MutableLiveData<String>()
-    val jwtToken: LiveData<String> get() = _jwtToken
-
-    private val _userInfo = MutableLiveData<AvatarInfo>() // userInfo를 JSON 문자열로 가정
-    val userInfo: LiveData<AvatarInfo> get() = _userInfo
+    override fun onVolunteerClick(volunteer: Volunteer) {
+        MyPageModel.getReviewQuestions()
+    }
 
 
 }

@@ -14,45 +14,6 @@ import retrofit2.Response
 
 object MyPageModel {
 
-    // DialogModel 배열을 생성
-    // todo 서버로 부터 리뷰 질문 받기
-//    val dialogArray = arrayOf(
-//        DialogModel(
-//            title = "리뷰 요청",
-//            content = "테스트1",
-//            imageBackground = R.drawable.ic_hotgamja_main_character,
-//            previousButtonText = "네",
-//            nextButtonText = "아니오"
-//        ),
-//        DialogModel(
-//            title = "리뷰 요청",
-//            content = "테스트2",
-//            imageBackground = R.drawable.ic_interest_cultural_event,
-//            previousButtonText = "네",
-//            nextButtonText = "아니오"
-//        ),
-//        DialogModel(
-//            title = "리뷰 요청",
-//            content = "테스트3",
-//            imageBackground = R.drawable.ic_interest_education,
-//            previousButtonText = "네",
-//            nextButtonText = "아니오"
-//        ),
-//        DialogModel(
-//            title = "리뷰 요청",
-//            content = "테스트4",
-//            imageBackground = R.drawable.ic_interest_international_event,
-//            previousButtonText = "네",
-//            nextButtonText = "아니오"
-//        ),
-//        DialogModel(
-//            title = "리뷰 요청",
-//            content = "테스트5",
-//            imageBackground = R.drawable.ic_interest_support,
-//            previousButtonText = "네",
-//            nextButtonText = "아니오"
-//        )
-//        )
     val dialogModels = MutableLiveData<List<DialogModel>>()
 
     //mypage 보기방식 spinner item
@@ -63,15 +24,13 @@ object MyPageModel {
     val volunteerCount = MutableLiveData<Int>()
     val ninkname = MutableLiveData<String>()
 
-
-
     //리사이클러뷰 count
     val recyclerViewCount = MutableLiveData<Int>()
 
     //봉사 내역 리스트
     val volunteerHistoryList = MutableLiveData<List<Volunteer>>()
 
-    //todo 봉사 내역 서버로부터 받기
+    //봉사 내역 서버로부터 받기
     fun getMyPageList(jwtToken: String){
         RetrofitClient.apiService().getHistory("Bearer $jwtToken").enqueue(object : Callback<VolunteerHistoryResponse> {
             override fun onResponse(
@@ -147,7 +106,6 @@ object MyPageModel {
 
     fun setMyPageModel(userInfo: AvatarInfo?){
         volunteerHours.value = userInfo?.avatarExp
-//        volunteerCount.value = userInfo.avatarExp
         ninkname.value = userInfo?.nickName
     }
 

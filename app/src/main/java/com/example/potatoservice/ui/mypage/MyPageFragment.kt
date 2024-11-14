@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.potatoservice.MainViewModel
 import com.example.potatoservice.databinding.FragmentMypageBinding
 import com.example.potatoservice.ui.share.Volunteer
 
@@ -16,10 +18,6 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
 
     private lateinit var binding: FragmentMypageBinding
     private lateinit var myPageViewModel: MyPageViewModel
-    private lateinit var customDialog : CustomDialogFragment
-    private lateinit var dialogArray : Array<DialogModel>
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,6 +42,10 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
 //            Log.d("testt", "MyPage User Info: $userInfo")
 //        }
         setUpInit()
+        binding.mypageRefresh.setOnClickListener {
+            //개인 히스토리 새로고침
+            myPageViewModel.onRefreshClick()
+        }
     }
 
     private fun setUpInit(){

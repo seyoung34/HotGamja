@@ -53,6 +53,7 @@ class HomeFragment : Fragment(), AdapterCallback {
         setSpinner()
         showSpinnerLoading()
         showSearchLoading()
+
         //검색 버튼 클릭 시
         binding.searchButton.setOnClickListener {
             search()
@@ -181,10 +182,12 @@ class HomeFragment : Fragment(), AdapterCallback {
         recyclerAdapterObserve()
         super.onResume()
     }
+
     //검색 결과 리사이클러뷰 옵저버
     private fun recyclerAdapterObserve(){
         mainViewModel.searchResults.observe(viewLifecycleOwner, Observer { activityList ->
             searchResultAdapter.submitListWithSetLoading(activityList)
+            Log.d("seyoung2","호출됨")
             binding.searchResultRecyclerView.adapter = searchResultAdapter
             searchResultAdapter.attachToRecyclerView(binding.searchResultRecyclerView)
             searchResultAdapter.setNowItemCount(activityList.size)
