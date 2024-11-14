@@ -21,9 +21,13 @@ class DetailViewModel @Inject constructor(
 
 ): AndroidViewModel(application){
 	//리뷰 퍼센트지 값
-	var review1 = 4.5
-	var review2 = 3.5
+	var review1 = 2.5
+	var review2 = 2.5
 	var review3 = 2.5
+	//리뷰 질문
+	var review1Question = ""
+	var review2Question = ""
+	var review3Question = ""
 
 	val activityDetail = repository.activityDetail.asLiveData()
 
@@ -32,7 +36,6 @@ class DetailViewModel @Inject constructor(
 		viewModelScope.launch(Dispatchers.IO) {
 			 repository.lookDetail(id)
 		}
-		Log.d("testt", "viewModelScope ${activityDetail.value?.actTitle}")
 	}
 
 	private val _agePossible = MutableLiveData<String>()

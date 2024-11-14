@@ -120,7 +120,9 @@ class HomeFragment : Fragment(), AdapterCallback {
                 binding.loadingShimmer.visibility = View.VISIBLE
                 binding.loadingShimmer.startShimmer()
             } else {
-                binding.loadingShimmer.stopShimmer()
+                if (binding.loadingShimmer.isShimmerStarted){
+                    binding.loadingShimmer.stopShimmer()
+                }
                 binding.loadingShimmer.visibility = View.GONE
                 binding.searchResultRecyclerView.visibility = View.VISIBLE
             }
@@ -259,6 +261,7 @@ class HomeFragment : Fragment(), AdapterCallback {
                         var majorSidoCode: Int? = 0
                         if (position != 0){
                             sidoCode = majorSidoCodeList[position]
+
                             majorSidoCode = sidoCode
                         }else{
                             sidoCode = null
