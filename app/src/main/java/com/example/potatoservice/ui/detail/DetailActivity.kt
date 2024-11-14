@@ -7,7 +7,7 @@ import android.content.pm.PackageManager
 import android.location.Location
 import android.net.Uri
 import android.os.Bundle
-import android.view.MotionEvent
+import android.util.Log
 
 import android.view.View
 import android.widget.Toast
@@ -20,6 +20,7 @@ import com.example.potatoservice.R
 import com.example.potatoservice.databinding.ActivityDetailBinding
 import com.example.potatoservice.model.remote.ActivityDetail
 import com.example.potatoservice.model.remote.Institute
+import com.example.potatoservice.model.remote.Score
 import com.example.potatoservice.ui.map.MapFragment
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -62,7 +63,6 @@ class DetailActivity : AppCompatActivity() {
 
 		binding.viewmodel = viewModel
 		getActivity(id)
-		setRatingBar()
 
 		//전화걸기 버튼
 		binding.callButton.setOnClickListener {
@@ -108,8 +108,8 @@ class DetailActivity : AppCompatActivity() {
 	//지도 페이지로 이동
 	private fun mapSizeUp(){
 		val bundle = Bundle()
-		institute!!.latitude?.let { bundle.putDouble("latitude", it) }
-		institute!!.longitude?.let { bundle.putDouble("longitude", it) }
+		detail!!.latitude?.let { bundle.putDouble("latitude", it) }
+		detail!!.longitude?.let { bundle.putDouble("longitude", it) }
 		bundle.putString("name", institute!!.name)
 		val fragment = MapFragment()
 		fragment.arguments = bundle
@@ -129,12 +129,31 @@ class DetailActivity : AppCompatActivity() {
 			detail = activityDetail
 			viewModel.setAgePossible()
 			viewModel.setGroupPossible()
+			setReview(institute?.scores)
+			setRatingBar(institute?.scores)
 			binding.invalidateAll()
 		})
-
 	}
 	//리뷰 표시
-	private fun setRatingBar(){
+	private fun setReview(scores: List<Score>?){
+		if (scores != null) {
+			viewModel.review1Question = scores[0].question.content
+			viewModel.review2Question = scores[1].question.content
+			viewModel.review3Question = scores[2].question.content
+		}
+		else{
+			viewModel.review1Question = "질문 정보가 없습니다."
+			viewModel.review2Question = "질문 정보가 없습니다."
+			viewModel.review3Question = "질문 정보가 없습니다."
+		}
+	}
+	//리뷰 평점 설정
+	private fun setRatingBar(scores: List<Score>?) {
+		if (scores != null) {
+			viewModel.review1 = scores[0].score
+			viewModel.review2 = scores[1].score
+			viewModel.review3 = scores[2].score
+		}
 		binding.ratingBar1.setRating(viewModel.review1.toFloat())
 		binding.ratingBar2.setRating(viewModel.review2.toFloat())
 		binding.ratingBar3.setRating(viewModel.review3.toFloat())
@@ -155,12 +174,6 @@ class DetailActivity : AppCompatActivity() {
 		mapView = binding.detailMapView
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-//		mapView.setOnTouchListener { v, event ->
-//			v.parent.requestDisallowInterceptTouchEvent(true)
-//			Log.d("seyoung","setOnTouchListener")
-//			false
-//		}
-
 		mapView.start(object : MapLifeCycleCallback() {
 			override fun onMapDestroy() {
 			}
@@ -178,8 +191,8 @@ class DetailActivity : AppCompatActivity() {
 				this@DetailActivity.kakaoMap = kakaoMap
 				//기관 위치 지도에서 마커로 표시하고 카메라 이동.
 				viewModel.loading.observe(this@DetailActivity, Observer {
-					if (institute?.latitude != null && institute?.longitude != null){
-						val latLng = LatLng.from(institute?.latitude!!, institute?.longitude!!)
+					if (detail?.latitude != null && detail?.longitude != null){
+						val latLng = LatLng.from(detail?.latitude!!, detail?.longitude!!)
 						setInitialCameraPosition(latLng)
 						setMarker(latLng)
 					}
