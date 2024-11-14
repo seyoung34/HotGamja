@@ -54,7 +54,7 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
         setupRecyclerView()
         setupTvLevel()
         setupTvTotalHours()
-        setupTvTotalCount()
+//        setupTvTotalCount()
         setupRecyclerViewCount()
         setupNickname()
         setupLvimage()
@@ -82,11 +82,11 @@ class MyPageFragment : Fragment(), OnVolunteerClickListener, CustomDialogFragmen
     }
 
     //총 봉사 건수 설정
-    private fun setupTvTotalCount(){
-        myPageViewModel.vmVolunteerCount.observe(viewLifecycleOwner, Observer {
-            binding.tvTotalVolunteerCount.text = "총 봉사 건수 : ${it} 건"
-        })
-    }
+//    private fun setupTvTotalCount(){
+//        myPageViewModel.vmVolunteerCount.observe(viewLifecycleOwner, Observer {
+//            binding.tvTotalVolunteerCount.text = "총 봉사 건수 : ${it} 건"
+//        })
+//    }
 
 
     //총 봉사 시간 설정

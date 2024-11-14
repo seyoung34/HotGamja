@@ -51,12 +51,12 @@ object MyPageModel {
                         Volunteer(
                             id = historyItem.historyId,
                             title = historyItem.activity.actTitle ?: "제목 없음",
-                            institution = "일단 모름", // 나중에 수정
+                            institution = " ",
                             Category = historyItem.activity.category,
                             recruitmentPeriod = "${historyItem.activity.noticeStartDate} ~ ${historyItem.activity.noticeEndDate}",
                             recruitmentCount = historyItem.activity.recruitTotalNum,
                             activityPeriod = "${historyItem.activity.actStartDate} ~ ${historyItem.activity.actEndDate}",
-                            volunteerHours = "일단 모름", // 봉사시간 계산 필요
+                            volunteerHours = " ", // 봉사시간 계산 필요
                             address = historyItem.activity.actLocation ?: "주소 없음",
                             status = historyItem.activityStatus
                         )
