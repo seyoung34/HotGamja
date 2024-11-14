@@ -104,14 +104,14 @@ class HomeFragment : Fragment(), AdapterCallback {
         }
     }
     //검색 결과 개수 업데이트
-    private fun getNumberOfElements(){
-        Log.d("testt", "numberOfElements: $numberOfElements")
-        homeViewModel.numberOfElements.observe(viewLifecycleOwner, Observer {
-            Log.d("testt", "numberOfElements observe: $it")
-            numberOfElements = it
-            binding.invalidateAll()
-        })
-    }
+//    private fun getNumberOfElements(){
+//        Log.d("testt", "numberOfElements: $numberOfElements")
+//        homeViewModel.numberOfElements.observe(viewLifecycleOwner, Observer {
+//            Log.d("testt", "numberOfElements observe: $it")
+//            numberOfElements = it
+//            binding.invalidateAll()
+//        })
+//    }
 
     //검색 로딩 화면 설정
     private fun showSearchLoading() {
