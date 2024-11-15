@@ -6,6 +6,7 @@ import com.example.potatoservice.R
 import com.example.potatoservice.model.RetrofitClient
 import com.example.potatoservice.model.remote.AvatarInfo
 import com.example.potatoservice.model.remote.Review
+import com.example.potatoservice.model.remote.ReviewRequest
 import com.example.potatoservice.model.remote.VolunteerHistoryResponse
 import com.example.potatoservice.ui.share.Volunteer
 import retrofit2.Call
@@ -15,6 +16,7 @@ import retrofit2.Response
 object MyPageModel {
 
     val dialogModels = MutableLiveData<List<DialogModel>>()
+    val reviewHistoryId = MutableLiveData<Int>()
 
     //mypage 보기방식 spinner item
     val spinnerItems : Array<String> = arrayOf("전체보기", "신청완료", "확정 대기", "수행완료됨")
@@ -38,13 +40,10 @@ object MyPageModel {
                 call: Call<VolunteerHistoryResponse>,
                 response: Response<VolunteerHistoryResponse>
             ) {
-                Log.d("seyoung", "getMyPageList response : ${response.code()}")
                 if (response.isSuccessful) {
-                    Log.d("seyoung", "getMyPageList response.isSuccessful")
                     // 서버에서 받은 VolunteerHistoryResponse에서 content를 가져옴
                     val historyItems = response.body()?.content ?: emptyList()
 
-                    Log.d("seyoung", "historyItems = ${historyItems}")
 
                     // HistoryItem을 Volunteer로 변환
                     volunteerHistoryList.value = historyItems.map { historyItem ->
@@ -62,8 +61,6 @@ object MyPageModel {
                         )
                     }
 
-                    Log.d("seyoung", "getMyPageList결과 = ${volunteerHistoryList}")
-                    Log.d("seyoung", "getMyPageList.value결과 = ${volunteerHistoryList.value}")
                 }
                 else{
                     Log.d("seyoung","getMyPageList response.isSuccessful 실패")
@@ -72,10 +69,15 @@ object MyPageModel {
 
             override fun onFailure(call: Call<VolunteerHistoryResponse>, t: Throwable) {
                 // 실패 처리
-                Log.d("seyoung","MyPageModel에서 getMyPageList가 실패함 ㅠ")
+                Log.d("seyoung","MyPageModel에서 getMyPageList가 실패함")
             }
         })
 
+    }
+
+    //클릭한 히스토리 아이디 설정
+    fun setReviewHistoryId(id: Int) {
+        reviewHistoryId.value = id
     }
 
     //리뷰 질문 내용 서버로부터 받기
@@ -103,6 +105,27 @@ object MyPageModel {
             }
         })
     }
+
+    // MyPageModel
+    fun sendReview(jwtToken: String, reviewRequest: ReviewRequest) {
+        RetrofitClient.apiService().sendReview("Bearer $jwtToken", reviewRequest).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful) {
+                    // 성공 시 처리
+                    Log.d("seyoung", "Review successfully sent.")
+                } else {
+                    // 실패 시 처리
+                    Log.e("seyoung", "Failed to send review: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                // 네트워크 실패 시 처리
+                Log.e("seyoung", "Network error: ${t.message}")
+            }
+        })
+    }
+
 
 
     fun setMyPageModel(userInfo: AvatarInfo?){

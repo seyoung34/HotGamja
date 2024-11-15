@@ -1,14 +1,14 @@
 package com.example.potatoservice.ui.mypage
 
 import android.content.Context
-import android.content.Intent
+import android.util.Log
 import android.widget.ArrayAdapter
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.potatoservice.R
-import com.example.potatoservice.model.remote.AvatarInfo
-import com.example.potatoservice.ui.detail.DetailActivity
+import com.example.potatoservice.model.remote.ReviewAnswer
+import com.example.potatoservice.model.remote.ReviewRequest
 import com.example.potatoservice.ui.share.Volunteer
 
 class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerClickListener {
@@ -52,16 +52,13 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
         MyPageModel.volunteerHistoryList.value ?: emptyList(), this
     )
 
-    val vmReviewDialog = MutableLiveData<List<DialogModel>>()
+    private val _vmReviewDialog = MutableLiveData<Event<List<DialogModel>>>()
+    val vmReviewDialog: LiveData<Event<List<DialogModel>>> = _vmReviewDialog
 
     //jwt토큰과, 유저정보
     private val sharedPref = context.getSharedPreferences("auth_prefs", Context.MODE_PRIVATE)
     private val _jwtToken = MutableLiveData<String>()
 //    val jwtToken: LiveData<String> get() = _jwtToken
-
-    private val _userInfo = MutableLiveData<AvatarInfo>() // userInfo를 JSON 문자열로 가정
-//    val userInfo: LiveData<AvatarInfo> get() = _userInfo
-
 
 
     //초기 설정
@@ -104,7 +101,7 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
 
         //리뷰 다이얼로그 질문 내용 리스트
         MyPageModel.dialogModels.observeForever {
-            vmReviewDialog.value = it
+            _vmReviewDialog.value = Event(it)
         }
 
         _jwtToken.value = sharedPref.getString("jwt_token", null)
@@ -123,14 +120,41 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
         _progressPercent.value = progressValue
     }
 
-    fun onRefreshClick(){
+    fun onRefreshClick() {
         MyPageModel.getMyPageList(_jwtToken.value.toString())
     }
 
 
     override fun checkReview(volunteer: Volunteer) {
+        MyPageModel.setReviewHistoryId(volunteer.id)
         MyPageModel.getReviewQuestions()
     }
+
+    //MyPageViewModel
+    fun sendReview(id: Int, ratingData: Map<Int, Float>) {
+
+        val filteredData = ratingData.filterKeys { it != 0 }
+        val reviewData = filteredData.mapKeys { it.key - 1 }
+
+        Log.d("seyoung","review id : $id")
+        Log.d("seyoung","review ratingData : $reviewData")
+
+        val answers = reviewData.map { entry ->
+            ReviewAnswer(questionId = entry.key, score = entry.value)
+        }
+
+        Log.d("seyoung", "$answers.toString()")
+
+
+        val requestBody = ReviewRequest(
+            historyId = id,
+            answers = answers
+        )
+
+        // API 호출
+        MyPageModel.sendReview(_jwtToken.value!!, requestBody)
+    }
+
 
 //    override fun onVolunteerClick(volunteer: Volunteer) {
 //        //todo 디테일로 인텐트하기
@@ -138,4 +162,19 @@ class MyPageViewModel(private val context: Context) : ViewModel(), OnVolunteerCl
 //        intent.putExtra("id", id) // 데이터 추가
 //        startActivity(intent)
 //    }
+}
+
+class Event<T>(private val content: T) {
+    private var hasBeenHandled = false
+
+    fun getContentIfNotHandled(): T? {
+        return if (hasBeenHandled) {
+            null
+        } else {
+            hasBeenHandled = true
+            content
+        }
+    }
+
+    fun peekContent(): T = content
 }

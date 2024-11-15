@@ -1,7 +1,9 @@
 package com.example.potatoservice.ui.mypage
 
+import android.content.DialogInterface
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.RecyclerView
 import com.example.potatoservice.databinding.ItemVolunteerBinding
 import com.example.potatoservice.ui.share.Volunteer
@@ -35,7 +37,6 @@ class VolunteerAdapter(
             }
             binding.btnAction.setOnClickListener {
                 if(volunteer.status == "FINISHED"){
-
                     listener.checkReview(volunteer)
                 }
                 else{
@@ -64,7 +65,6 @@ class VolunteerAdapter(
         volunteerList = newList
         notifyDataSetChanged()
     }
-
 
 
 }

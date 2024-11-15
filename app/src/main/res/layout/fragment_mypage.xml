@@ -169,22 +169,22 @@
             android:id="@+id/mypageRefresh"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:background="@drawable/ic_mypage_refresh"
             android:backgroundTint="@color/point_brown_2"
             android:layout_marginTop="5dp"
-            app:layout_constraintStart_toEndOf="@id/mypageRecyclerViewCount"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
         <!-- 토글 스위치 (스피너 또는 드롭다운) -->
-        <Spinner
-            android:id="@+id/myPageSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="48dp"
+<!--        <Spinner-->
+<!--            android:id="@+id/myPageSpinner"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="48dp"-->
 
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
